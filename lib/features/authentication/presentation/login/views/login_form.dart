@@ -5,42 +5,51 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:iconsax/iconsax.dart';
 
-class LoginView extends StatefulWidget {
-  const LoginView({super.key});
-
-  @override
-  State<LoginView> createState() => _LoginViewState();
-}
-
-class _LoginViewState extends State<LoginView> {
-  bool isLoading = false;
+class LoginForm extends StatelessWidget {
+  const LoginForm({super.key});
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            _buildLoginTitle(),
-            const Gap(30),
-            const _LoginEmail(),
-            const Gap(30),
-            const _LoginPassword(),
-            const Gap(50),
-            const _LoginButton(),
-            const Gap(30),
-            const Text('Forgot Password?'),
-            const Gap(20),
-            _buildGetStarted(),
-          ],
-        ),
+    return BlocListener<LoginBloc, LoginState>(
+      listenWhen: (previous, current) => previous.status != current.status,
+      listener: (context, state) {
+        state.status.whenOrNull(
+          success: () => ScaffoldMessenger.of(context)
+            ..hideCurrentSnackBar()
+            ..showSnackBar(
+              const SnackBar(
+                content: Text('Login Success'),
+              ),
+            ),
+          error: (error) => ScaffoldMessenger.of(context)
+            ..hideCurrentSnackBar()
+            ..showSnackBar(
+              SnackBar(
+                content: Text(error),
+                backgroundColor: Colors.red,
+              ),
+            ),
+        );
+      },
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          _buildLoginTitle(context),
+          const Gap(30),
+          const _LoginEmail(),
+          const Gap(30),
+          const _LoginPassword(),
+          const Gap(50),
+          const _LoginButton(),
+          const Gap(30),
+          const Text('Forgot Password?'),
+          const Gap(20),
+          _buildGetStarted(context),
+        ],
       ),
     );
   }
 
-  Widget _buildLoginTitle() {
+  Widget _buildLoginTitle(BuildContext context) {
     return Column(
       children: [
         Container(
@@ -75,7 +84,7 @@ class _LoginViewState extends State<LoginView> {
     );
   }
 
-  Widget _buildGetStarted() {
+  Widget _buildGetStarted(BuildContext context) {
     return RichText(
       text: TextSpan(
         text: "Don't have an account yet? ",
@@ -100,10 +109,14 @@ class _LoginEmail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<LoginBloc, LoginState>(
+      buildWhen: (previous, current) => previous.email != current.email,
       builder: (context, state) {
         return AppTextBox(
           labelText: 'Email Address',
+          enabled:
+              state.status.maybeWhen(loading: () => false, orElse: () => true),
           prefixIcon: const Icon(Iconsax.user),
+          error: _emailValidator(state.email),
           onChanged: (value) => context.read<LoginBloc>()
             ..add(
               EmailChanged(value),
@@ -113,6 +126,21 @@ class _LoginEmail extends StatelessWidget {
       },
     );
   }
+
+  String? _emailValidator(String? value) {
+    if (value == null) return null;
+    if (value.isEmpty) {
+      return 'Email is required';
+    }
+
+    final emailReg = RegExp(
+      r'^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$',
+    );
+    if (!emailReg.hasMatch(value)) {
+      return 'Invalid Email';
+    }
+    return null;
+  }
 }
 
 class _LoginPassword extends StatelessWidget {
@@ -120,15 +148,43 @@ class _LoginPassword extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppTextBox(
-      labelText: 'Password',
-      prefixIcon: const Icon(Iconsax.lock_1),
-      onChanged: (value) => context.read<LoginBloc>()
-        ..add(
-          PasswordChanged(value),
-        )
-        ..add(const LoginValid()),
+    return BlocBuilder<LoginBloc, LoginState>(
+      buildWhen: (previous, current) => previous.password != current.password,
+      builder: (context, state) {
+        return AppTextBox(
+          labelText: 'Password',
+          prefixIcon: const Icon(Iconsax.lock_1),
+          obscureText: state.isObsecure,
+          enabled:
+              state.status.maybeWhen(loading: () => false, orElse: () => true),
+          suffixIcon: GestureDetector(
+            onTap: () => context.read<LoginBloc>().add(const TogglePassword()),
+            child: Icon(
+              state.isObsecure ? Iconsax.eye_slash : Iconsax.eye,
+            ),
+          ),
+          error: _passwordValidator(state.password),
+          onChanged: (value) => context.read<LoginBloc>()
+            ..add(
+              PasswordChanged(value),
+            )
+            ..add(const LoginValid()),
+        );
+      },
     );
+  }
+
+  String? _passwordValidator(String? value) {
+    if (value == null) return null;
+
+    if (value.isEmpty) {
+      return 'Password is required';
+    }
+    // final passwordReg = RegExp(r'^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$');
+    if (value.length < 6) {
+      return 'Password must be at least 6';
+    }
+    return null;
   }
 }
 

@@ -21,6 +21,7 @@ mixin _$LoginEvent {
     required TResult Function(String email) emailChanged,
     required TResult Function(String password) passwordChanged,
     required TResult Function() valid,
+    required TResult Function() toogle,
     required TResult Function() submitted,
   }) =>
       throw _privateConstructorUsedError;
@@ -29,6 +30,7 @@ mixin _$LoginEvent {
     TResult? Function(String email)? emailChanged,
     TResult? Function(String password)? passwordChanged,
     TResult? Function()? valid,
+    TResult? Function()? toogle,
     TResult? Function()? submitted,
   }) =>
       throw _privateConstructorUsedError;
@@ -37,6 +39,7 @@ mixin _$LoginEvent {
     TResult Function(String email)? emailChanged,
     TResult Function(String password)? passwordChanged,
     TResult Function()? valid,
+    TResult Function()? toogle,
     TResult Function()? submitted,
     required TResult orElse(),
   }) =>
@@ -46,6 +49,7 @@ mixin _$LoginEvent {
     required TResult Function(EmailChanged value) emailChanged,
     required TResult Function(PasswordChanged value) passwordChanged,
     required TResult Function(LoginValid value) valid,
+    required TResult Function(TogglePassword value) toogle,
     required TResult Function(LoginSubmitted value) submitted,
   }) =>
       throw _privateConstructorUsedError;
@@ -54,6 +58,7 @@ mixin _$LoginEvent {
     TResult? Function(EmailChanged value)? emailChanged,
     TResult? Function(PasswordChanged value)? passwordChanged,
     TResult? Function(LoginValid value)? valid,
+    TResult? Function(TogglePassword value)? toogle,
     TResult? Function(LoginSubmitted value)? submitted,
   }) =>
       throw _privateConstructorUsedError;
@@ -62,6 +67,7 @@ mixin _$LoginEvent {
     TResult Function(EmailChanged value)? emailChanged,
     TResult Function(PasswordChanged value)? passwordChanged,
     TResult Function(LoginValid value)? valid,
+    TResult Function(TogglePassword value)? toogle,
     TResult Function(LoginSubmitted value)? submitted,
     required TResult orElse(),
   }) =>
@@ -153,6 +159,7 @@ class _$EmailChanged implements EmailChanged {
     required TResult Function(String email) emailChanged,
     required TResult Function(String password) passwordChanged,
     required TResult Function() valid,
+    required TResult Function() toogle,
     required TResult Function() submitted,
   }) {
     return emailChanged(email);
@@ -164,6 +171,7 @@ class _$EmailChanged implements EmailChanged {
     TResult? Function(String email)? emailChanged,
     TResult? Function(String password)? passwordChanged,
     TResult? Function()? valid,
+    TResult? Function()? toogle,
     TResult? Function()? submitted,
   }) {
     return emailChanged?.call(email);
@@ -175,6 +183,7 @@ class _$EmailChanged implements EmailChanged {
     TResult Function(String email)? emailChanged,
     TResult Function(String password)? passwordChanged,
     TResult Function()? valid,
+    TResult Function()? toogle,
     TResult Function()? submitted,
     required TResult orElse(),
   }) {
@@ -190,6 +199,7 @@ class _$EmailChanged implements EmailChanged {
     required TResult Function(EmailChanged value) emailChanged,
     required TResult Function(PasswordChanged value) passwordChanged,
     required TResult Function(LoginValid value) valid,
+    required TResult Function(TogglePassword value) toogle,
     required TResult Function(LoginSubmitted value) submitted,
   }) {
     return emailChanged(this);
@@ -201,6 +211,7 @@ class _$EmailChanged implements EmailChanged {
     TResult? Function(EmailChanged value)? emailChanged,
     TResult? Function(PasswordChanged value)? passwordChanged,
     TResult? Function(LoginValid value)? valid,
+    TResult? Function(TogglePassword value)? toogle,
     TResult? Function(LoginSubmitted value)? submitted,
   }) {
     return emailChanged?.call(this);
@@ -212,6 +223,7 @@ class _$EmailChanged implements EmailChanged {
     TResult Function(EmailChanged value)? emailChanged,
     TResult Function(PasswordChanged value)? passwordChanged,
     TResult Function(LoginValid value)? valid,
+    TResult Function(TogglePassword value)? toogle,
     TResult Function(LoginSubmitted value)? submitted,
     required TResult orElse(),
   }) {
@@ -299,6 +311,7 @@ class _$PasswordChanged implements PasswordChanged {
     required TResult Function(String email) emailChanged,
     required TResult Function(String password) passwordChanged,
     required TResult Function() valid,
+    required TResult Function() toogle,
     required TResult Function() submitted,
   }) {
     return passwordChanged(password);
@@ -310,6 +323,7 @@ class _$PasswordChanged implements PasswordChanged {
     TResult? Function(String email)? emailChanged,
     TResult? Function(String password)? passwordChanged,
     TResult? Function()? valid,
+    TResult? Function()? toogle,
     TResult? Function()? submitted,
   }) {
     return passwordChanged?.call(password);
@@ -321,6 +335,7 @@ class _$PasswordChanged implements PasswordChanged {
     TResult Function(String email)? emailChanged,
     TResult Function(String password)? passwordChanged,
     TResult Function()? valid,
+    TResult Function()? toogle,
     TResult Function()? submitted,
     required TResult orElse(),
   }) {
@@ -336,6 +351,7 @@ class _$PasswordChanged implements PasswordChanged {
     required TResult Function(EmailChanged value) emailChanged,
     required TResult Function(PasswordChanged value) passwordChanged,
     required TResult Function(LoginValid value) valid,
+    required TResult Function(TogglePassword value) toogle,
     required TResult Function(LoginSubmitted value) submitted,
   }) {
     return passwordChanged(this);
@@ -347,6 +363,7 @@ class _$PasswordChanged implements PasswordChanged {
     TResult? Function(EmailChanged value)? emailChanged,
     TResult? Function(PasswordChanged value)? passwordChanged,
     TResult? Function(LoginValid value)? valid,
+    TResult? Function(TogglePassword value)? toogle,
     TResult? Function(LoginSubmitted value)? submitted,
   }) {
     return passwordChanged?.call(this);
@@ -358,6 +375,7 @@ class _$PasswordChanged implements PasswordChanged {
     TResult Function(EmailChanged value)? emailChanged,
     TResult Function(PasswordChanged value)? passwordChanged,
     TResult Function(LoginValid value)? valid,
+    TResult Function(TogglePassword value)? toogle,
     TResult Function(LoginSubmitted value)? submitted,
     required TResult orElse(),
   }) {
@@ -418,6 +436,7 @@ class _$LoginValid implements LoginValid {
     required TResult Function(String email) emailChanged,
     required TResult Function(String password) passwordChanged,
     required TResult Function() valid,
+    required TResult Function() toogle,
     required TResult Function() submitted,
   }) {
     return valid();
@@ -429,6 +448,7 @@ class _$LoginValid implements LoginValid {
     TResult? Function(String email)? emailChanged,
     TResult? Function(String password)? passwordChanged,
     TResult? Function()? valid,
+    TResult? Function()? toogle,
     TResult? Function()? submitted,
   }) {
     return valid?.call();
@@ -440,6 +460,7 @@ class _$LoginValid implements LoginValid {
     TResult Function(String email)? emailChanged,
     TResult Function(String password)? passwordChanged,
     TResult Function()? valid,
+    TResult Function()? toogle,
     TResult Function()? submitted,
     required TResult orElse(),
   }) {
@@ -455,6 +476,7 @@ class _$LoginValid implements LoginValid {
     required TResult Function(EmailChanged value) emailChanged,
     required TResult Function(PasswordChanged value) passwordChanged,
     required TResult Function(LoginValid value) valid,
+    required TResult Function(TogglePassword value) toogle,
     required TResult Function(LoginSubmitted value) submitted,
   }) {
     return valid(this);
@@ -466,6 +488,7 @@ class _$LoginValid implements LoginValid {
     TResult? Function(EmailChanged value)? emailChanged,
     TResult? Function(PasswordChanged value)? passwordChanged,
     TResult? Function(LoginValid value)? valid,
+    TResult? Function(TogglePassword value)? toogle,
     TResult? Function(LoginSubmitted value)? submitted,
   }) {
     return valid?.call(this);
@@ -477,6 +500,7 @@ class _$LoginValid implements LoginValid {
     TResult Function(EmailChanged value)? emailChanged,
     TResult Function(PasswordChanged value)? passwordChanged,
     TResult Function(LoginValid value)? valid,
+    TResult Function(TogglePassword value)? toogle,
     TResult Function(LoginSubmitted value)? submitted,
     required TResult orElse(),
   }) {
@@ -489,6 +513,126 @@ class _$LoginValid implements LoginValid {
 
 abstract class LoginValid implements LoginEvent {
   const factory LoginValid() = _$LoginValid;
+}
+
+/// @nodoc
+abstract class _$$TogglePasswordCopyWith<$Res> {
+  factory _$$TogglePasswordCopyWith(
+          _$TogglePassword value, $Res Function(_$TogglePassword) then) =
+      __$$TogglePasswordCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$TogglePasswordCopyWithImpl<$Res>
+    extends _$LoginEventCopyWithImpl<$Res, _$TogglePassword>
+    implements _$$TogglePasswordCopyWith<$Res> {
+  __$$TogglePasswordCopyWithImpl(
+      _$TogglePassword _value, $Res Function(_$TogglePassword) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$TogglePassword implements TogglePassword {
+  const _$TogglePassword();
+
+  @override
+  String toString() {
+    return 'LoginEvent.toogle()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$TogglePassword);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String email) emailChanged,
+    required TResult Function(String password) passwordChanged,
+    required TResult Function() valid,
+    required TResult Function() toogle,
+    required TResult Function() submitted,
+  }) {
+    return toogle();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String email)? emailChanged,
+    TResult? Function(String password)? passwordChanged,
+    TResult? Function()? valid,
+    TResult? Function()? toogle,
+    TResult? Function()? submitted,
+  }) {
+    return toogle?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String email)? emailChanged,
+    TResult Function(String password)? passwordChanged,
+    TResult Function()? valid,
+    TResult Function()? toogle,
+    TResult Function()? submitted,
+    required TResult orElse(),
+  }) {
+    if (toogle != null) {
+      return toogle();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(EmailChanged value) emailChanged,
+    required TResult Function(PasswordChanged value) passwordChanged,
+    required TResult Function(LoginValid value) valid,
+    required TResult Function(TogglePassword value) toogle,
+    required TResult Function(LoginSubmitted value) submitted,
+  }) {
+    return toogle(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(EmailChanged value)? emailChanged,
+    TResult? Function(PasswordChanged value)? passwordChanged,
+    TResult? Function(LoginValid value)? valid,
+    TResult? Function(TogglePassword value)? toogle,
+    TResult? Function(LoginSubmitted value)? submitted,
+  }) {
+    return toogle?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(EmailChanged value)? emailChanged,
+    TResult Function(PasswordChanged value)? passwordChanged,
+    TResult Function(LoginValid value)? valid,
+    TResult Function(TogglePassword value)? toogle,
+    TResult Function(LoginSubmitted value)? submitted,
+    required TResult orElse(),
+  }) {
+    if (toogle != null) {
+      return toogle(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class TogglePassword implements LoginEvent {
+  const factory TogglePassword() = _$TogglePassword;
 }
 
 /// @nodoc
@@ -532,6 +676,7 @@ class _$LoginSubmitted implements LoginSubmitted {
     required TResult Function(String email) emailChanged,
     required TResult Function(String password) passwordChanged,
     required TResult Function() valid,
+    required TResult Function() toogle,
     required TResult Function() submitted,
   }) {
     return submitted();
@@ -543,6 +688,7 @@ class _$LoginSubmitted implements LoginSubmitted {
     TResult? Function(String email)? emailChanged,
     TResult? Function(String password)? passwordChanged,
     TResult? Function()? valid,
+    TResult? Function()? toogle,
     TResult? Function()? submitted,
   }) {
     return submitted?.call();
@@ -554,6 +700,7 @@ class _$LoginSubmitted implements LoginSubmitted {
     TResult Function(String email)? emailChanged,
     TResult Function(String password)? passwordChanged,
     TResult Function()? valid,
+    TResult Function()? toogle,
     TResult Function()? submitted,
     required TResult orElse(),
   }) {
@@ -569,6 +716,7 @@ class _$LoginSubmitted implements LoginSubmitted {
     required TResult Function(EmailChanged value) emailChanged,
     required TResult Function(PasswordChanged value) passwordChanged,
     required TResult Function(LoginValid value) valid,
+    required TResult Function(TogglePassword value) toogle,
     required TResult Function(LoginSubmitted value) submitted,
   }) {
     return submitted(this);
@@ -580,6 +728,7 @@ class _$LoginSubmitted implements LoginSubmitted {
     TResult? Function(EmailChanged value)? emailChanged,
     TResult? Function(PasswordChanged value)? passwordChanged,
     TResult? Function(LoginValid value)? valid,
+    TResult? Function(TogglePassword value)? toogle,
     TResult? Function(LoginSubmitted value)? submitted,
   }) {
     return submitted?.call(this);
@@ -591,6 +740,7 @@ class _$LoginSubmitted implements LoginSubmitted {
     TResult Function(EmailChanged value)? emailChanged,
     TResult Function(PasswordChanged value)? passwordChanged,
     TResult Function(LoginValid value)? valid,
+    TResult Function(TogglePassword value)? toogle,
     TResult Function(LoginSubmitted value)? submitted,
     required TResult orElse(),
   }) {
@@ -608,8 +758,9 @@ abstract class LoginSubmitted implements LoginEvent {
 /// @nodoc
 mixin _$LoginState {
   AppStatus get status => throw _privateConstructorUsedError;
-  String get email => throw _privateConstructorUsedError;
-  String get password => throw _privateConstructorUsedError;
+  String? get email => throw _privateConstructorUsedError;
+  String? get password => throw _privateConstructorUsedError;
+  bool get isObsecure => throw _privateConstructorUsedError;
   bool get loginValid => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -623,7 +774,12 @@ abstract class $LoginStateCopyWith<$Res> {
           LoginState value, $Res Function(LoginState) then) =
       _$LoginStateCopyWithImpl<$Res, LoginState>;
   @useResult
-  $Res call({AppStatus status, String email, String password, bool loginValid});
+  $Res call(
+      {AppStatus status,
+      String? email,
+      String? password,
+      bool isObsecure,
+      bool loginValid});
 
   $AppStatusCopyWith<$Res> get status;
 }
@@ -642,8 +798,9 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
   @override
   $Res call({
     Object? status = null,
-    Object? email = null,
-    Object? password = null,
+    Object? email = freezed,
+    Object? password = freezed,
+    Object? isObsecure = null,
     Object? loginValid = null,
   }) {
     return _then(_value.copyWith(
@@ -651,14 +808,18 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as AppStatus,
-      email: null == email
+      email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      password: null == password
+              as String?,
+      password: freezed == password
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
+      isObsecure: null == isObsecure
+          ? _value.isObsecure
+          : isObsecure // ignore: cast_nullable_to_non_nullable
+              as bool,
       loginValid: null == loginValid
           ? _value.loginValid
           : loginValid // ignore: cast_nullable_to_non_nullable
@@ -683,7 +844,12 @@ abstract class _$$_LoginStateCopyWith<$Res>
       __$$_LoginStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({AppStatus status, String email, String password, bool loginValid});
+  $Res call(
+      {AppStatus status,
+      String? email,
+      String? password,
+      bool isObsecure,
+      bool loginValid});
 
   @override
   $AppStatusCopyWith<$Res> get status;
@@ -701,8 +867,9 @@ class __$$_LoginStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? status = null,
-    Object? email = null,
-    Object? password = null,
+    Object? email = freezed,
+    Object? password = freezed,
+    Object? isObsecure = null,
     Object? loginValid = null,
   }) {
     return _then(_$_LoginState(
@@ -710,14 +877,18 @@ class __$$_LoginStateCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as AppStatus,
-      email: null == email
+      email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      password: null == password
+              as String?,
+      password: freezed == password
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
+      isObsecure: null == isObsecure
+          ? _value.isObsecure
+          : isObsecure // ignore: cast_nullable_to_non_nullable
+              as bool,
       loginValid: null == loginValid
           ? _value.loginValid
           : loginValid // ignore: cast_nullable_to_non_nullable
@@ -731,26 +902,28 @@ class __$$_LoginStateCopyWithImpl<$Res>
 class _$_LoginState implements _LoginState {
   const _$_LoginState(
       {this.status = const AppStatus.initial(),
-      this.email = '',
-      this.password = '',
+      this.email,
+      this.password,
+      this.isObsecure = true,
       this.loginValid = false});
 
   @override
   @JsonKey()
   final AppStatus status;
   @override
-  @JsonKey()
-  final String email;
+  final String? email;
+  @override
+  final String? password;
   @override
   @JsonKey()
-  final String password;
+  final bool isObsecure;
   @override
   @JsonKey()
   final bool loginValid;
 
   @override
   String toString() {
-    return 'LoginState(status: $status, email: $email, password: $password, loginValid: $loginValid)';
+    return 'LoginState(status: $status, email: $email, password: $password, isObsecure: $isObsecure, loginValid: $loginValid)';
   }
 
   @override
@@ -762,13 +935,15 @@ class _$_LoginState implements _LoginState {
             (identical(other.email, email) || other.email == email) &&
             (identical(other.password, password) ||
                 other.password == password) &&
+            (identical(other.isObsecure, isObsecure) ||
+                other.isObsecure == isObsecure) &&
             (identical(other.loginValid, loginValid) ||
                 other.loginValid == loginValid));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, status, email, password, loginValid);
+      Object.hash(runtimeType, status, email, password, isObsecure, loginValid);
 
   @JsonKey(ignore: true)
   @override
@@ -780,16 +955,19 @@ class _$_LoginState implements _LoginState {
 abstract class _LoginState implements LoginState {
   const factory _LoginState(
       {final AppStatus status,
-      final String email,
-      final String password,
+      final String? email,
+      final String? password,
+      final bool isObsecure,
       final bool loginValid}) = _$_LoginState;
 
   @override
   AppStatus get status;
   @override
-  String get email;
+  String? get email;
   @override
-  String get password;
+  String? get password;
+  @override
+  bool get isObsecure;
   @override
   bool get loginValid;
   @override

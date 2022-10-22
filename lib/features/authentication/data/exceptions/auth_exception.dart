@@ -46,7 +46,7 @@ extension AuthExceptionEx on AuthException {
       weakPassword: () => 'The password is too weak.',
       emailAlreadyInUse: () => 'The account already exists.',
       invalidEmail: () => 'The email address is badly formatted.',
-      userNotFound: () => 'No user found.',
+      userNotFound: () => 'Invalid email or password',
       wrongPassword: () => 'Wrong password provided.',
       tooManyRequests: () => 'Too many requests. Try again later.',
     );

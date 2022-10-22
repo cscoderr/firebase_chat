@@ -13,10 +13,16 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) =>
-          LoginBloc(authRepository: context.read<AuthRepository>()),
-      child: const LoginView(),
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: BlocProvider(
+          create: (context) =>
+              LoginBloc(authRepository: context.read<AuthRepository>()),
+          child: const LoginForm(),
+        ),
+      ),
     );
   }
 }

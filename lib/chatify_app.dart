@@ -16,9 +16,7 @@ class ChatifyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiRepositoryProvider(
       providers: [
-        RepositoryProvider<AuthRepository>(
-          create: (context) => authRepository,
-        ),
+        RepositoryProvider<AuthRepository>.value(value: authRepository),
         // RepositoryProvider(
         //   create: (context) => SubjectRepository(),
         // ),

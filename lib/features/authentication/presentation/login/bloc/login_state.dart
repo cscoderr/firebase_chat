@@ -4,8 +4,9 @@ part of 'login_bloc.dart';
 class LoginState with _$LoginState {
   const factory LoginState({
     @Default(AppStatus.initial()) AppStatus status,
-    @Default('') String email,
-    @Default('') String password,
+    String? email,
+    String? password,
+    @Default(true) bool isObsecure,
     @Default(false) bool loginValid,
   }) = _LoginState;
 }

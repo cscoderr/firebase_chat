@@ -20,8 +20,7 @@ class AuthApiImpl implements AuthApi {
     required String password,
   }) async {
     try {
-      final credential =
-          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
