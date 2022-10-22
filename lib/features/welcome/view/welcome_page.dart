@@ -1,6 +1,6 @@
 // ignore_for_file: prefer_int_literals
 
-import 'package:firebase_chat/features/login/login.dart';
+import 'package:firebase_chat/features/authentication/presentation/login/login.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 
