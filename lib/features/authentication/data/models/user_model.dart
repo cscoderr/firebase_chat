@@ -1,6 +1,10 @@
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:json_annotation/json_annotation.dart';
 
+part 'user_model.g.dart';
+
+@JsonSerializable()
 class UserModel with EquatableMixin {
   const UserModel({
     this.id,
@@ -20,6 +24,9 @@ class UserModel with EquatableMixin {
       phoneNumber: user.phoneNumber,
     );
   }
+
+  factory UserModel.fromJson(Map<String, dynamic> json) =>
+      _$UserModelFromJson(json);
 
   final String? id;
   final String? name;

@@ -1,10 +1,29 @@
+import 'package:firebase_chat/app/app.dart';
 import 'package:firebase_chat/core/core.dart';
+import 'package:firebase_chat/features/chat/chat.dart';
+import 'package:firebase_chat/features/home/presentation/cubit/home_cubit.dart';
 import 'package:firebase_chat/features/home/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax/iconsax.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final userId = context.select((AppBloc bloc) => bloc.state.user.id);
+    return BlocProvider(
+      create: (context) => HomeCubit(
+        chatRepository: context.read<ChatRepository>(),
+      )..getMessages(userId ?? ''),
+      child: const HomeView(),
+    );
+  }
+}
+
+class HomeView extends StatelessWidget {
+  const HomeView({super.key});
 
   @override
   Widget build(BuildContext context) {

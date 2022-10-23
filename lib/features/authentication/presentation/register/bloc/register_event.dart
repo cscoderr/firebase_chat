@@ -2,6 +2,10 @@ part of 'register_bloc.dart';
 
 @freezed
 class RegisterEvent with _$RegisterEvent {
+  const factory RegisterEvent.fullNameChanged(String fullName) =
+      FullNameChanged;
+  const factory RegisterEvent.usernameChanged(String username) =
+      UsernameChanged;
   const factory RegisterEvent.emailChanged(String email) = RegisterEmailChanged;
   const factory RegisterEvent.passwordChanged(String password) =
       RegisterPasswordChanged;

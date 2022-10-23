@@ -16,7 +16,9 @@ class RegisterPage extends StatelessWidget {
             create: (context) => RegisterBloc(
               authRepository: context.read<AuthRepository>(),
             ),
-            child: const RegisterForm(),
+            child: const SingleChildScrollView(
+              child: RegisterForm(),
+            ),
           ),
         ),
       ),

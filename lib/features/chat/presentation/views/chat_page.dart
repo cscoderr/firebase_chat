@@ -11,16 +11,38 @@ class ChatPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final user = context.select((AppBloc bloc) => bloc.state.user);
     return BlocProvider(
       create: (context) =>
-          ChatBloc(chatRepository: context.read<ChatRepository>()),
+          ChatBloc(chatRepository: context.read<ChatRepository>())
+            ..add(const GetMessages())
+            ..add(UserChanged(user)),
       child: const ChatView(),
     );
   }
 }
 
-class ChatView extends StatelessWidget {
+class ChatView extends StatefulWidget {
   const ChatView({super.key});
+
+  @override
+  State<ChatView> createState() => _ChatViewState();
+}
+
+class _ChatViewState extends State<ChatView> {
+  late ScrollController _scrollController;
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController = ScrollController();
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,13 +71,28 @@ class ChatView extends StatelessWidget {
               ),
               const Gap(20),
               Expanded(
-                child: ListView.separated(
-                  itemCount: 10,
-                  separatorBuilder: (BuildContext context, int index) =>
-                      const Gap(15),
-                  itemBuilder: (BuildContext context, int index) {
-                    return ChatBubble(
-                      isMe: index.isEven,
+                child: BlocBuilder<ChatBloc, ChatState>(
+                  builder: (context, state) {
+                    return state.status.maybeWhen(
+                      success: () {
+                        return ListView.separated(
+                          controller: _scrollController,
+                          reverse: true,
+                          itemCount: state.messages.length,
+                          separatorBuilder: (BuildContext context, int index) =>
+                              const Gap(15),
+                          itemBuilder: (BuildContext context, int index) {
+                            final currentMessage = state.messages[index];
+                            return ChatBubble(
+                              isMe: index.isEven,
+                              message: currentMessage.message ?? '',
+                            );
+                          },
+                        );
+                      },
+                      orElse: () => const Center(
+                        child: CircularProgressIndicator.adaptive(),
+                      ),
                     );
                   },
                 ),
@@ -71,13 +108,16 @@ class ChatView extends StatelessWidget {
                     onPressed: () {},
                     icon: const Icon(Iconsax.microphone),
                   ),
-                  const Expanded(
+                  Expanded(
                     child: AppTextBox(
                       labelText: 'Type a message',
+                      onChanged: (value) =>
+                          context.read<ChatBloc>().add(MessageChanged(value)),
                     ),
                   ),
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () =>
+                        context.read<ChatBloc>().add(const SendMessage()),
                     icon: const Icon(Iconsax.send_1),
                   )
                 ],

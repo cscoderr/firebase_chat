@@ -38,6 +38,10 @@ class RegisterForm extends StatelessWidget {
         children: [
           _buildRegisterTitle(context),
           const Gap(30),
+          const _FullNameInput(),
+          const Gap(30),
+          const _UsernameInput(),
+          const Gap(30),
           const _EmailInput(),
           const Gap(30),
           const _PasswordInput(),
@@ -86,6 +90,76 @@ class RegisterForm extends StatelessWidget {
   }
 }
 
+class _FullNameInput extends StatelessWidget {
+  const _FullNameInput();
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<RegisterBloc, RegisterState>(
+      buildWhen: (previous, current) => previous.fullName != current.fullName,
+      builder: (context, state) {
+        return AppTextBox(
+          labelText: 'Full Name',
+          enabled:
+              state.status.maybeWhen(loading: () => false, orElse: () => true),
+          prefixIcon: const Icon(Iconsax.user),
+          error: _fullNameValidator(state.fullName),
+          onChanged: (value) => context.read<RegisterBloc>()
+            ..add(
+              FullNameChanged(value),
+            )
+            ..add(const RegisterValid()),
+        );
+      },
+    );
+  }
+
+  String? _fullNameValidator(String? value) {
+    if (value == null) return null;
+    if (value.isEmpty) {
+      return 'Full Name is required';
+    }
+    return null;
+  }
+}
+
+class _UsernameInput extends StatelessWidget {
+  const _UsernameInput();
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<RegisterBloc, RegisterState>(
+      buildWhen: (previous, current) => previous.username != current.username,
+      builder: (context, state) {
+        return AppTextBox(
+          labelText: 'Username',
+          enabled:
+              state.status.maybeWhen(loading: () => false, orElse: () => true),
+          prefixIcon: const Icon(Iconsax.user_add),
+          error: _usernameValidator(state.username),
+          onChanged: (value) => context.read<RegisterBloc>()
+            ..add(
+              UsernameChanged(value),
+            )
+            ..add(const RegisterValid()),
+        );
+      },
+    );
+  }
+
+  String? _usernameValidator(String? value) {
+    if (value == null) return null;
+    if (value.isEmpty) {
+      return 'Username is required';
+    }
+
+    if (value.length < 6) {
+      return 'Username must be at least 6';
+    }
+    return null;
+  }
+}
+
 class _EmailInput extends StatelessWidget {
   const _EmailInput();
 
@@ -98,7 +172,7 @@ class _EmailInput extends StatelessWidget {
           labelText: 'Email Address',
           enabled:
               state.status.maybeWhen(loading: () => false, orElse: () => true),
-          prefixIcon: const Icon(Iconsax.user),
+          prefixIcon: const Icon(Iconsax.sms),
           error: _emailValidator(state.email),
           onChanged: (value) => context.read<RegisterBloc>()
             ..add(
@@ -132,7 +206,9 @@ class _PasswordInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<RegisterBloc, RegisterState>(
-      buildWhen: (previous, current) => previous.password != current.password,
+      buildWhen: (previous, current) =>
+          previous.password != current.password ||
+          previous.isPasswordObsecure != current.isPasswordObsecure,
       builder: (context, state) {
         return AppTextBox(
           labelText: 'Password',
@@ -179,7 +255,10 @@ class _ConfirmPasswordInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<RegisterBloc, RegisterState>(
-      buildWhen: (previous, current) => previous.password != current.password,
+      buildWhen: (previous, current) =>
+          previous.confirmPassword != current.confirmPassword ||
+          previous.isConfirmPasswordObsecure !=
+              current.isConfirmPasswordObsecure,
       builder: (context, state) {
         return AppTextBox(
           labelText: 'Confirm Password',
@@ -215,10 +294,6 @@ class _ConfirmPasswordInput extends StatelessWidget {
 
     if (value != password) {
       return 'Password does not match';
-    }
-
-    if (value.length < 6) {
-      return 'Password must be at least 6';
     }
     return null;
   }

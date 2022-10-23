@@ -187,7 +187,9 @@ class _LoginPassword extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<LoginBloc, LoginState>(
-      buildWhen: (previous, current) => previous.password != current.password,
+      buildWhen: (previous, current) =>
+          previous.password != current.password ||
+          previous.isObsecure != current.isObsecure,
       builder: (context, state) {
         return AppTextBox(
           labelText: 'Password',

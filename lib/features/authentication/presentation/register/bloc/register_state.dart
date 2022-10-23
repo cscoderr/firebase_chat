@@ -4,6 +4,8 @@ part of 'register_bloc.dart';
 class RegisterState with _$RegisterState {
   const factory RegisterState({
     @Default(CommonStatus.initial()) CommonStatus status,
+    String? fullName,
+    String? username,
     String? email,
     String? password,
     String? confirmPassword,

@@ -25,7 +25,7 @@ mixin _$AuthException {
     required TResult Function() userNotFound,
     required TResult Function() wrongPassword,
     required TResult Function() tooManyRequests,
-    required TResult Function(String code, Object? e) authApiException,
+    required TResult Function(String code, Object? e) mapException,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -37,7 +37,7 @@ mixin _$AuthException {
     TResult? Function()? userNotFound,
     TResult? Function()? wrongPassword,
     TResult? Function()? tooManyRequests,
-    TResult? Function(String code, Object? e)? authApiException,
+    TResult? Function(String code, Object? e)? mapException,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -49,7 +49,7 @@ mixin _$AuthException {
     TResult Function()? userNotFound,
     TResult Function()? wrongPassword,
     TResult Function()? tooManyRequests,
-    TResult Function(String code, Object? e)? authApiException,
+    TResult Function(String code, Object? e)? mapException,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -62,7 +62,7 @@ mixin _$AuthException {
     required TResult Function(UserNotFound value) userNotFound,
     required TResult Function(WrongPassword value) wrongPassword,
     required TResult Function(TooManyRequests value) tooManyRequests,
-    required TResult Function(AuthApiException value) authApiException,
+    required TResult Function(MapException value) mapException,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -74,7 +74,7 @@ mixin _$AuthException {
     TResult? Function(UserNotFound value)? userNotFound,
     TResult? Function(WrongPassword value)? wrongPassword,
     TResult? Function(TooManyRequests value)? tooManyRequests,
-    TResult? Function(AuthApiException value)? authApiException,
+    TResult? Function(MapException value)? mapException,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -86,7 +86,7 @@ mixin _$AuthException {
     TResult Function(UserNotFound value)? userNotFound,
     TResult Function(WrongPassword value)? wrongPassword,
     TResult Function(TooManyRequests value)? tooManyRequests,
-    TResult Function(AuthApiException value)? authApiException,
+    TResult Function(MapException value)? mapException,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -186,7 +186,7 @@ class _$Unknown implements Unknown {
     required TResult Function() userNotFound,
     required TResult Function() wrongPassword,
     required TResult Function() tooManyRequests,
-    required TResult Function(String code, Object? e) authApiException,
+    required TResult Function(String code, Object? e) mapException,
   }) {
     return unknown(e, stackTrace);
   }
@@ -201,7 +201,7 @@ class _$Unknown implements Unknown {
     TResult? Function()? userNotFound,
     TResult? Function()? wrongPassword,
     TResult? Function()? tooManyRequests,
-    TResult? Function(String code, Object? e)? authApiException,
+    TResult? Function(String code, Object? e)? mapException,
   }) {
     return unknown?.call(e, stackTrace);
   }
@@ -216,7 +216,7 @@ class _$Unknown implements Unknown {
     TResult Function()? userNotFound,
     TResult Function()? wrongPassword,
     TResult Function()? tooManyRequests,
-    TResult Function(String code, Object? e)? authApiException,
+    TResult Function(String code, Object? e)? mapException,
     required TResult orElse(),
   }) {
     if (unknown != null) {
@@ -235,7 +235,7 @@ class _$Unknown implements Unknown {
     required TResult Function(UserNotFound value) userNotFound,
     required TResult Function(WrongPassword value) wrongPassword,
     required TResult Function(TooManyRequests value) tooManyRequests,
-    required TResult Function(AuthApiException value) authApiException,
+    required TResult Function(MapException value) mapException,
   }) {
     return unknown(this);
   }
@@ -250,7 +250,7 @@ class _$Unknown implements Unknown {
     TResult? Function(UserNotFound value)? userNotFound,
     TResult? Function(WrongPassword value)? wrongPassword,
     TResult? Function(TooManyRequests value)? tooManyRequests,
-    TResult? Function(AuthApiException value)? authApiException,
+    TResult? Function(MapException value)? mapException,
   }) {
     return unknown?.call(this);
   }
@@ -265,7 +265,7 @@ class _$Unknown implements Unknown {
     TResult Function(UserNotFound value)? userNotFound,
     TResult Function(WrongPassword value)? wrongPassword,
     TResult Function(TooManyRequests value)? tooManyRequests,
-    TResult Function(AuthApiException value)? authApiException,
+    TResult Function(MapException value)? mapException,
     required TResult orElse(),
   }) {
     if (unknown != null) {
@@ -330,7 +330,7 @@ class _$WeakPassword implements WeakPassword {
     required TResult Function() userNotFound,
     required TResult Function() wrongPassword,
     required TResult Function() tooManyRequests,
-    required TResult Function(String code, Object? e) authApiException,
+    required TResult Function(String code, Object? e) mapException,
   }) {
     return weakPassword();
   }
@@ -345,7 +345,7 @@ class _$WeakPassword implements WeakPassword {
     TResult? Function()? userNotFound,
     TResult? Function()? wrongPassword,
     TResult? Function()? tooManyRequests,
-    TResult? Function(String code, Object? e)? authApiException,
+    TResult? Function(String code, Object? e)? mapException,
   }) {
     return weakPassword?.call();
   }
@@ -360,7 +360,7 @@ class _$WeakPassword implements WeakPassword {
     TResult Function()? userNotFound,
     TResult Function()? wrongPassword,
     TResult Function()? tooManyRequests,
-    TResult Function(String code, Object? e)? authApiException,
+    TResult Function(String code, Object? e)? mapException,
     required TResult orElse(),
   }) {
     if (weakPassword != null) {
@@ -379,7 +379,7 @@ class _$WeakPassword implements WeakPassword {
     required TResult Function(UserNotFound value) userNotFound,
     required TResult Function(WrongPassword value) wrongPassword,
     required TResult Function(TooManyRequests value) tooManyRequests,
-    required TResult Function(AuthApiException value) authApiException,
+    required TResult Function(MapException value) mapException,
   }) {
     return weakPassword(this);
   }
@@ -394,7 +394,7 @@ class _$WeakPassword implements WeakPassword {
     TResult? Function(UserNotFound value)? userNotFound,
     TResult? Function(WrongPassword value)? wrongPassword,
     TResult? Function(TooManyRequests value)? tooManyRequests,
-    TResult? Function(AuthApiException value)? authApiException,
+    TResult? Function(MapException value)? mapException,
   }) {
     return weakPassword?.call(this);
   }
@@ -409,7 +409,7 @@ class _$WeakPassword implements WeakPassword {
     TResult Function(UserNotFound value)? userNotFound,
     TResult Function(WrongPassword value)? wrongPassword,
     TResult Function(TooManyRequests value)? tooManyRequests,
-    TResult Function(AuthApiException value)? authApiException,
+    TResult Function(MapException value)? mapException,
     required TResult orElse(),
   }) {
     if (weakPassword != null) {
@@ -468,7 +468,7 @@ class _$EmailAlreadyInUse implements EmailAlreadyInUse {
     required TResult Function() userNotFound,
     required TResult Function() wrongPassword,
     required TResult Function() tooManyRequests,
-    required TResult Function(String code, Object? e) authApiException,
+    required TResult Function(String code, Object? e) mapException,
   }) {
     return emailAlreadyInUse();
   }
@@ -483,7 +483,7 @@ class _$EmailAlreadyInUse implements EmailAlreadyInUse {
     TResult? Function()? userNotFound,
     TResult? Function()? wrongPassword,
     TResult? Function()? tooManyRequests,
-    TResult? Function(String code, Object? e)? authApiException,
+    TResult? Function(String code, Object? e)? mapException,
   }) {
     return emailAlreadyInUse?.call();
   }
@@ -498,7 +498,7 @@ class _$EmailAlreadyInUse implements EmailAlreadyInUse {
     TResult Function()? userNotFound,
     TResult Function()? wrongPassword,
     TResult Function()? tooManyRequests,
-    TResult Function(String code, Object? e)? authApiException,
+    TResult Function(String code, Object? e)? mapException,
     required TResult orElse(),
   }) {
     if (emailAlreadyInUse != null) {
@@ -517,7 +517,7 @@ class _$EmailAlreadyInUse implements EmailAlreadyInUse {
     required TResult Function(UserNotFound value) userNotFound,
     required TResult Function(WrongPassword value) wrongPassword,
     required TResult Function(TooManyRequests value) tooManyRequests,
-    required TResult Function(AuthApiException value) authApiException,
+    required TResult Function(MapException value) mapException,
   }) {
     return emailAlreadyInUse(this);
   }
@@ -532,7 +532,7 @@ class _$EmailAlreadyInUse implements EmailAlreadyInUse {
     TResult? Function(UserNotFound value)? userNotFound,
     TResult? Function(WrongPassword value)? wrongPassword,
     TResult? Function(TooManyRequests value)? tooManyRequests,
-    TResult? Function(AuthApiException value)? authApiException,
+    TResult? Function(MapException value)? mapException,
   }) {
     return emailAlreadyInUse?.call(this);
   }
@@ -547,7 +547,7 @@ class _$EmailAlreadyInUse implements EmailAlreadyInUse {
     TResult Function(UserNotFound value)? userNotFound,
     TResult Function(WrongPassword value)? wrongPassword,
     TResult Function(TooManyRequests value)? tooManyRequests,
-    TResult Function(AuthApiException value)? authApiException,
+    TResult Function(MapException value)? mapException,
     required TResult orElse(),
   }) {
     if (emailAlreadyInUse != null) {
@@ -606,7 +606,7 @@ class _$InvalidEmail implements InvalidEmail {
     required TResult Function() userNotFound,
     required TResult Function() wrongPassword,
     required TResult Function() tooManyRequests,
-    required TResult Function(String code, Object? e) authApiException,
+    required TResult Function(String code, Object? e) mapException,
   }) {
     return invalidEmail();
   }
@@ -621,7 +621,7 @@ class _$InvalidEmail implements InvalidEmail {
     TResult? Function()? userNotFound,
     TResult? Function()? wrongPassword,
     TResult? Function()? tooManyRequests,
-    TResult? Function(String code, Object? e)? authApiException,
+    TResult? Function(String code, Object? e)? mapException,
   }) {
     return invalidEmail?.call();
   }
@@ -636,7 +636,7 @@ class _$InvalidEmail implements InvalidEmail {
     TResult Function()? userNotFound,
     TResult Function()? wrongPassword,
     TResult Function()? tooManyRequests,
-    TResult Function(String code, Object? e)? authApiException,
+    TResult Function(String code, Object? e)? mapException,
     required TResult orElse(),
   }) {
     if (invalidEmail != null) {
@@ -655,7 +655,7 @@ class _$InvalidEmail implements InvalidEmail {
     required TResult Function(UserNotFound value) userNotFound,
     required TResult Function(WrongPassword value) wrongPassword,
     required TResult Function(TooManyRequests value) tooManyRequests,
-    required TResult Function(AuthApiException value) authApiException,
+    required TResult Function(MapException value) mapException,
   }) {
     return invalidEmail(this);
   }
@@ -670,7 +670,7 @@ class _$InvalidEmail implements InvalidEmail {
     TResult? Function(UserNotFound value)? userNotFound,
     TResult? Function(WrongPassword value)? wrongPassword,
     TResult? Function(TooManyRequests value)? tooManyRequests,
-    TResult? Function(AuthApiException value)? authApiException,
+    TResult? Function(MapException value)? mapException,
   }) {
     return invalidEmail?.call(this);
   }
@@ -685,7 +685,7 @@ class _$InvalidEmail implements InvalidEmail {
     TResult Function(UserNotFound value)? userNotFound,
     TResult Function(WrongPassword value)? wrongPassword,
     TResult Function(TooManyRequests value)? tooManyRequests,
-    TResult Function(AuthApiException value)? authApiException,
+    TResult Function(MapException value)? mapException,
     required TResult orElse(),
   }) {
     if (invalidEmail != null) {
@@ -744,7 +744,7 @@ class _$UserNotFound implements UserNotFound {
     required TResult Function() userNotFound,
     required TResult Function() wrongPassword,
     required TResult Function() tooManyRequests,
-    required TResult Function(String code, Object? e) authApiException,
+    required TResult Function(String code, Object? e) mapException,
   }) {
     return userNotFound();
   }
@@ -759,7 +759,7 @@ class _$UserNotFound implements UserNotFound {
     TResult? Function()? userNotFound,
     TResult? Function()? wrongPassword,
     TResult? Function()? tooManyRequests,
-    TResult? Function(String code, Object? e)? authApiException,
+    TResult? Function(String code, Object? e)? mapException,
   }) {
     return userNotFound?.call();
   }
@@ -774,7 +774,7 @@ class _$UserNotFound implements UserNotFound {
     TResult Function()? userNotFound,
     TResult Function()? wrongPassword,
     TResult Function()? tooManyRequests,
-    TResult Function(String code, Object? e)? authApiException,
+    TResult Function(String code, Object? e)? mapException,
     required TResult orElse(),
   }) {
     if (userNotFound != null) {
@@ -793,7 +793,7 @@ class _$UserNotFound implements UserNotFound {
     required TResult Function(UserNotFound value) userNotFound,
     required TResult Function(WrongPassword value) wrongPassword,
     required TResult Function(TooManyRequests value) tooManyRequests,
-    required TResult Function(AuthApiException value) authApiException,
+    required TResult Function(MapException value) mapException,
   }) {
     return userNotFound(this);
   }
@@ -808,7 +808,7 @@ class _$UserNotFound implements UserNotFound {
     TResult? Function(UserNotFound value)? userNotFound,
     TResult? Function(WrongPassword value)? wrongPassword,
     TResult? Function(TooManyRequests value)? tooManyRequests,
-    TResult? Function(AuthApiException value)? authApiException,
+    TResult? Function(MapException value)? mapException,
   }) {
     return userNotFound?.call(this);
   }
@@ -823,7 +823,7 @@ class _$UserNotFound implements UserNotFound {
     TResult Function(UserNotFound value)? userNotFound,
     TResult Function(WrongPassword value)? wrongPassword,
     TResult Function(TooManyRequests value)? tooManyRequests,
-    TResult Function(AuthApiException value)? authApiException,
+    TResult Function(MapException value)? mapException,
     required TResult orElse(),
   }) {
     if (userNotFound != null) {
@@ -882,7 +882,7 @@ class _$WrongPassword implements WrongPassword {
     required TResult Function() userNotFound,
     required TResult Function() wrongPassword,
     required TResult Function() tooManyRequests,
-    required TResult Function(String code, Object? e) authApiException,
+    required TResult Function(String code, Object? e) mapException,
   }) {
     return wrongPassword();
   }
@@ -897,7 +897,7 @@ class _$WrongPassword implements WrongPassword {
     TResult? Function()? userNotFound,
     TResult? Function()? wrongPassword,
     TResult? Function()? tooManyRequests,
-    TResult? Function(String code, Object? e)? authApiException,
+    TResult? Function(String code, Object? e)? mapException,
   }) {
     return wrongPassword?.call();
   }
@@ -912,7 +912,7 @@ class _$WrongPassword implements WrongPassword {
     TResult Function()? userNotFound,
     TResult Function()? wrongPassword,
     TResult Function()? tooManyRequests,
-    TResult Function(String code, Object? e)? authApiException,
+    TResult Function(String code, Object? e)? mapException,
     required TResult orElse(),
   }) {
     if (wrongPassword != null) {
@@ -931,7 +931,7 @@ class _$WrongPassword implements WrongPassword {
     required TResult Function(UserNotFound value) userNotFound,
     required TResult Function(WrongPassword value) wrongPassword,
     required TResult Function(TooManyRequests value) tooManyRequests,
-    required TResult Function(AuthApiException value) authApiException,
+    required TResult Function(MapException value) mapException,
   }) {
     return wrongPassword(this);
   }
@@ -946,7 +946,7 @@ class _$WrongPassword implements WrongPassword {
     TResult? Function(UserNotFound value)? userNotFound,
     TResult? Function(WrongPassword value)? wrongPassword,
     TResult? Function(TooManyRequests value)? tooManyRequests,
-    TResult? Function(AuthApiException value)? authApiException,
+    TResult? Function(MapException value)? mapException,
   }) {
     return wrongPassword?.call(this);
   }
@@ -961,7 +961,7 @@ class _$WrongPassword implements WrongPassword {
     TResult Function(UserNotFound value)? userNotFound,
     TResult Function(WrongPassword value)? wrongPassword,
     TResult Function(TooManyRequests value)? tooManyRequests,
-    TResult Function(AuthApiException value)? authApiException,
+    TResult Function(MapException value)? mapException,
     required TResult orElse(),
   }) {
     if (wrongPassword != null) {
@@ -1020,7 +1020,7 @@ class _$TooManyRequests implements TooManyRequests {
     required TResult Function() userNotFound,
     required TResult Function() wrongPassword,
     required TResult Function() tooManyRequests,
-    required TResult Function(String code, Object? e) authApiException,
+    required TResult Function(String code, Object? e) mapException,
   }) {
     return tooManyRequests();
   }
@@ -1035,7 +1035,7 @@ class _$TooManyRequests implements TooManyRequests {
     TResult? Function()? userNotFound,
     TResult? Function()? wrongPassword,
     TResult? Function()? tooManyRequests,
-    TResult? Function(String code, Object? e)? authApiException,
+    TResult? Function(String code, Object? e)? mapException,
   }) {
     return tooManyRequests?.call();
   }
@@ -1050,7 +1050,7 @@ class _$TooManyRequests implements TooManyRequests {
     TResult Function()? userNotFound,
     TResult Function()? wrongPassword,
     TResult Function()? tooManyRequests,
-    TResult Function(String code, Object? e)? authApiException,
+    TResult Function(String code, Object? e)? mapException,
     required TResult orElse(),
   }) {
     if (tooManyRequests != null) {
@@ -1069,7 +1069,7 @@ class _$TooManyRequests implements TooManyRequests {
     required TResult Function(UserNotFound value) userNotFound,
     required TResult Function(WrongPassword value) wrongPassword,
     required TResult Function(TooManyRequests value) tooManyRequests,
-    required TResult Function(AuthApiException value) authApiException,
+    required TResult Function(MapException value) mapException,
   }) {
     return tooManyRequests(this);
   }
@@ -1084,7 +1084,7 @@ class _$TooManyRequests implements TooManyRequests {
     TResult? Function(UserNotFound value)? userNotFound,
     TResult? Function(WrongPassword value)? wrongPassword,
     TResult? Function(TooManyRequests value)? tooManyRequests,
-    TResult? Function(AuthApiException value)? authApiException,
+    TResult? Function(MapException value)? mapException,
   }) {
     return tooManyRequests?.call(this);
   }
@@ -1099,7 +1099,7 @@ class _$TooManyRequests implements TooManyRequests {
     TResult Function(UserNotFound value)? userNotFound,
     TResult Function(WrongPassword value)? wrongPassword,
     TResult Function(TooManyRequests value)? tooManyRequests,
-    TResult Function(AuthApiException value)? authApiException,
+    TResult Function(MapException value)? mapException,
     required TResult orElse(),
   }) {
     if (tooManyRequests != null) {
@@ -1114,20 +1114,20 @@ abstract class TooManyRequests implements AuthException {
 }
 
 /// @nodoc
-abstract class _$$AuthApiExceptionCopyWith<$Res> {
-  factory _$$AuthApiExceptionCopyWith(
-          _$AuthApiException value, $Res Function(_$AuthApiException) then) =
-      __$$AuthApiExceptionCopyWithImpl<$Res>;
+abstract class _$$MapExceptionCopyWith<$Res> {
+  factory _$$MapExceptionCopyWith(
+          _$MapException value, $Res Function(_$MapException) then) =
+      __$$MapExceptionCopyWithImpl<$Res>;
   @useResult
   $Res call({String code, Object? e});
 }
 
 /// @nodoc
-class __$$AuthApiExceptionCopyWithImpl<$Res>
-    extends _$AuthExceptionCopyWithImpl<$Res, _$AuthApiException>
-    implements _$$AuthApiExceptionCopyWith<$Res> {
-  __$$AuthApiExceptionCopyWithImpl(
-      _$AuthApiException _value, $Res Function(_$AuthApiException) _then)
+class __$$MapExceptionCopyWithImpl<$Res>
+    extends _$AuthExceptionCopyWithImpl<$Res, _$MapException>
+    implements _$$MapExceptionCopyWith<$Res> {
+  __$$MapExceptionCopyWithImpl(
+      _$MapException _value, $Res Function(_$MapException) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1136,7 +1136,7 @@ class __$$AuthApiExceptionCopyWithImpl<$Res>
     Object? code = null,
     Object? e = freezed,
   }) {
-    return _then(_$AuthApiException(
+    return _then(_$MapException(
       code: null == code
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
@@ -1148,8 +1148,8 @@ class __$$AuthApiExceptionCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$AuthApiException implements AuthApiException {
-  _$AuthApiException({required this.code, this.e});
+class _$MapException implements MapException {
+  _$MapException({required this.code, this.e});
 
   @override
   final String code;
@@ -1158,14 +1158,14 @@ class _$AuthApiException implements AuthApiException {
 
   @override
   String toString() {
-    return 'AuthException.authApiException(code: $code, e: $e)';
+    return 'AuthException.mapException(code: $code, e: $e)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AuthApiException &&
+            other is _$MapException &&
             (identical(other.code, code) || other.code == code) &&
             const DeepCollectionEquality().equals(other.e, e));
   }
@@ -1177,8 +1177,8 @@ class _$AuthApiException implements AuthApiException {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$AuthApiExceptionCopyWith<_$AuthApiException> get copyWith =>
-      __$$AuthApiExceptionCopyWithImpl<_$AuthApiException>(this, _$identity);
+  _$$MapExceptionCopyWith<_$MapException> get copyWith =>
+      __$$MapExceptionCopyWithImpl<_$MapException>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1190,9 +1190,9 @@ class _$AuthApiException implements AuthApiException {
     required TResult Function() userNotFound,
     required TResult Function() wrongPassword,
     required TResult Function() tooManyRequests,
-    required TResult Function(String code, Object? e) authApiException,
+    required TResult Function(String code, Object? e) mapException,
   }) {
-    return authApiException(code, e);
+    return mapException(code, e);
   }
 
   @override
@@ -1205,9 +1205,9 @@ class _$AuthApiException implements AuthApiException {
     TResult? Function()? userNotFound,
     TResult? Function()? wrongPassword,
     TResult? Function()? tooManyRequests,
-    TResult? Function(String code, Object? e)? authApiException,
+    TResult? Function(String code, Object? e)? mapException,
   }) {
-    return authApiException?.call(code, e);
+    return mapException?.call(code, e);
   }
 
   @override
@@ -1220,11 +1220,11 @@ class _$AuthApiException implements AuthApiException {
     TResult Function()? userNotFound,
     TResult Function()? wrongPassword,
     TResult Function()? tooManyRequests,
-    TResult Function(String code, Object? e)? authApiException,
+    TResult Function(String code, Object? e)? mapException,
     required TResult orElse(),
   }) {
-    if (authApiException != null) {
-      return authApiException(code, e);
+    if (mapException != null) {
+      return mapException(code, e);
     }
     return orElse();
   }
@@ -1239,9 +1239,9 @@ class _$AuthApiException implements AuthApiException {
     required TResult Function(UserNotFound value) userNotFound,
     required TResult Function(WrongPassword value) wrongPassword,
     required TResult Function(TooManyRequests value) tooManyRequests,
-    required TResult Function(AuthApiException value) authApiException,
+    required TResult Function(MapException value) mapException,
   }) {
-    return authApiException(this);
+    return mapException(this);
   }
 
   @override
@@ -1254,9 +1254,9 @@ class _$AuthApiException implements AuthApiException {
     TResult? Function(UserNotFound value)? userNotFound,
     TResult? Function(WrongPassword value)? wrongPassword,
     TResult? Function(TooManyRequests value)? tooManyRequests,
-    TResult? Function(AuthApiException value)? authApiException,
+    TResult? Function(MapException value)? mapException,
   }) {
-    return authApiException?.call(this);
+    return mapException?.call(this);
   }
 
   @override
@@ -1269,23 +1269,23 @@ class _$AuthApiException implements AuthApiException {
     TResult Function(UserNotFound value)? userNotFound,
     TResult Function(WrongPassword value)? wrongPassword,
     TResult Function(TooManyRequests value)? tooManyRequests,
-    TResult Function(AuthApiException value)? authApiException,
+    TResult Function(MapException value)? mapException,
     required TResult orElse(),
   }) {
-    if (authApiException != null) {
-      return authApiException(this);
+    if (mapException != null) {
+      return mapException(this);
     }
     return orElse();
   }
 }
 
-abstract class AuthApiException implements AuthException {
-  factory AuthApiException({required final String code, final Object? e}) =
-      _$AuthApiException;
+abstract class MapException implements AuthException {
+  factory MapException({required final String code, final Object? e}) =
+      _$MapException;
 
   String get code;
   Object? get e;
   @JsonKey(ignore: true)
-  _$$AuthApiExceptionCopyWith<_$AuthApiException> get copyWith =>
+  _$$MapExceptionCopyWith<_$MapException> get copyWith =>
       throw _privateConstructorUsedError;
 }

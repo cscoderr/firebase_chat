@@ -7,5 +7,6 @@ class ChatState with _$ChatState {
     @Default([]) List<Message> messages,
     @Default('') String message,
     @Default('') String receiverId,
+    @Default(UserModel()) UserModel user,
   }) = _ChatState;
 }

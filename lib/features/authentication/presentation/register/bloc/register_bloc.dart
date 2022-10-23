@@ -18,11 +18,13 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
     ///https://github.com/felangel/bloc/issues/2784
     on<RegisterEvent>((event, emit) async {
       await event.map(
+        fullNameChanged: (event) async => _onFullNameChanged(event, emit),
+        usernameChanged: (event) async => _onUsernameChanged(event, emit),
         emailChanged: (event) async => _onEmailChanged(event, emit),
         passwordChanged: (event) async => _onPasswordChanged(event, emit),
         confirmPasswordChanged: (event) async =>
             _onConfirmPasswordChanged(event, emit),
-        togglePassword: (event) async => _onPasswordtoggle(event, emit),
+        togglePassword: (_) async => _onPasswordtoggle(emit),
         toggleConfirmPassword: (_) async => _onConfirmPasswordToggle(emit),
         submitted: (_) async => _onSubmitted(emit),
         valid: (_) async => _registerValid(emit),
@@ -31,6 +33,14 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
   }
 
   final AuthRepository _authRepository;
+
+  void _onFullNameChanged(FullNameChanged event, _Emit emit) {
+    emit(state.copyWith(fullName: event.fullName));
+  }
+
+  void _onUsernameChanged(UsernameChanged event, _Emit emit) {
+    emit(state.copyWith(username: event.username));
+  }
 
   void _onEmailChanged(RegisterEmailChanged event, _Emit emit) {
     emit(state.copyWith(email: event.email));
@@ -57,6 +67,8 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
         (state.password?.isNotEmpty ?? false) &&
         (state.confirmPassword?.isNotEmpty ?? false) &&
         (state.password == state.confirmPassword) &&
+        (state.fullName?.isNotEmpty ?? false) &&
+        (state.username?.isNotEmpty ?? false) &&
         emailReg.hasMatch(state.email ?? '')) {
       emit(state.copyWith(registerValid: true));
     } else {
@@ -64,7 +76,8 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
     }
   }
 
-  void _onPasswordtoggle(RegisterTogglePassword event, _Emit emit) {
+  void _onPasswordtoggle(_Emit emit) {
+    print(state.isPasswordObsecure);
     emit(state.copyWith(isPasswordObsecure: !state.isPasswordObsecure));
   }
 
@@ -80,6 +93,8 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
     try {
       emit(state.copyWith(status: const CommonStatus.loading()));
       await _authRepository.register(
+        fullName: state.fullName!,
+        username: state.username!,
         email: state.email!,
         password: state.password!,
       );

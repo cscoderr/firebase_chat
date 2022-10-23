@@ -11,11 +11,11 @@ class AuthException with _$AuthException implements Exception {
   factory AuthException.userNotFound() = UserNotFound;
   factory AuthException.wrongPassword() = WrongPassword;
   factory AuthException.tooManyRequests() = TooManyRequests;
-  factory AuthException.authApiException({required String code, Object? e}) =
-      AuthApiException;
+  factory AuthException.mapException({required String code, Object? e}) =
+      MapException;
 }
 
-extension ApiExceptionEx on AuthApiException {
+extension ApiExceptionEx on MapException {
   AuthException get exception {
     switch (code) {
       case 'weak-password':

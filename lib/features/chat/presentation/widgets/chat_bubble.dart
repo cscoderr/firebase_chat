@@ -4,20 +4,23 @@ import 'package:gap/gap.dart';
 class ChatBubble extends StatelessWidget {
   const ChatBubble({
     super.key,
+    required this.message,
     this.isMe = false,
   });
 
   final bool isMe;
+  final String message;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: isMe ? MainAxisAlignment.end : MainAxisAlignment.start,
       children: [
-        const CircleAvatar(
-          radius: 20,
-          child: Text('A'),
-        ),
+        if (!isMe)
+          const CircleAvatar(
+            radius: 20,
+            child: Text('A'),
+          ),
         const Gap(10),
         Flexible(
           child: Container(
@@ -34,19 +37,20 @@ class ChatBubble extends StatelessWidget {
                 ),
               ],
             ),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  'Heloo there ',
-                  style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                        color: isMe ? Colors.white : Colors.black,
-                      ),
-                ),
-              ],
+            child: Text(
+              message,
+              style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                    color: isMe ? Colors.white : Colors.black,
+                  ),
             ),
           ),
         ),
+        const Gap(10),
+        if (isMe)
+          const CircleAvatar(
+            radius: 20,
+            child: Text('A'),
+          ),
       ],
     );
   }
