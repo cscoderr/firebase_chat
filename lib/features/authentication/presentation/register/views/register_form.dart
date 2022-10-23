@@ -1,22 +1,28 @@
 import 'package:firebase_chat/core/core.dart';
 import 'package:firebase_chat/features/authentication/authentication.dart';
-import 'package:firebase_chat/features/tab/tab.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:iconsax/iconsax.dart';
 
-class LoginForm extends StatelessWidget {
-  const LoginForm({super.key});
+class RegisterForm extends StatelessWidget {
+  const RegisterForm({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return BlocListener<LoginBloc, LoginState>(
+    return BlocListener<RegisterBloc, RegisterState>(
       listenWhen: (previous, current) => previous.status != current.status,
       listener: (context, state) {
         state.status.whenOrNull(
           success: () {
-            _goToHomePage(context);
+            ScaffoldMessenger.of(context)
+              ..hideCurrentSnackBar()
+              ..showSnackBar(
+                const SnackBar(
+                  content: Text('Registration Successful'),
+                ),
+              );
+            // _goToRegisterPage(context);
           },
           error: (error) => ScaffoldMessenger.of(context)
             ..hideCurrentSnackBar()
@@ -29,63 +35,22 @@ class LoginForm extends StatelessWidget {
         );
       },
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          _buildLoginTitle(context),
+          _buildRegisterTitle(context),
           const Gap(30),
-          const _LoginEmail(),
+          const _EmailInput(),
           const Gap(30),
-          const _LoginPassword(),
+          const _PasswordInput(),
+          const Gap(30),
+          const _ConfirmPasswordInput(),
           const Gap(50),
-          const _LoginButton(),
-          const Gap(30),
-          const Text('Forgot Password?'),
-          const Gap(20),
-          _buildGetStarted(context),
+          const _SubmitButton(),
         ],
       ),
     );
   }
 
-  void _goToRegisterPage(BuildContext context) {
-    Navigator.of(context).push(
-      PageRouteBuilder(
-        pageBuilder: (context, animation, secondaryAnimation) =>
-            const RegisterPage(),
-        transitionDuration: const Duration(milliseconds: 400),
-        transitionsBuilder: (context, animation, secondaryAnimation, child) {
-          return SlideTransition(
-            position: Tween<Offset>(
-              begin: const Offset(1, 0),
-              end: Offset.zero,
-            ).animate(animation),
-            child: child,
-          );
-        },
-      ),
-    );
-  }
-
-  void _goToHomePage(BuildContext context) {
-    Navigator.of(context).push(
-      PageRouteBuilder(
-        pageBuilder: (context, animation, secondaryAnimation) =>
-            const TabPage(),
-        transitionDuration: const Duration(milliseconds: 400),
-        transitionsBuilder: (context, animation, secondaryAnimation, child) {
-          return FadeTransition(
-            opacity: Tween<double>(
-              begin: 0,
-              end: 1,
-            ).animate(animation),
-            child: child,
-          );
-        },
-      ),
-    );
-  }
-
-  Widget _buildLoginTitle(BuildContext context) {
+  Widget _buildRegisterTitle(BuildContext context) {
     return Column(
       children: [
         Container(
@@ -110,7 +75,7 @@ class LoginForm extends StatelessWidget {
         ),
         const SizedBox(height: 30),
         Text(
-          'Welcome to Chatify,\nlogin to continue',
+          'Welcome to Chatify,\nregister to get started',
           textAlign: TextAlign.center,
           style: Theme.of(context).textTheme.headline5!.copyWith(
                 fontWeight: FontWeight.w600,
@@ -119,34 +84,14 @@ class LoginForm extends StatelessWidget {
       ],
     );
   }
-
-  Widget _buildGetStarted(BuildContext context) {
-    return RichText(
-      text: TextSpan(
-        text: "Don't have an account yet? ",
-        style: Theme.of(context).textTheme.bodyText1!.copyWith(),
-        children: [
-          TextSpan(
-            text: 'Get started',
-            style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                  color: Theme.of(context).colorScheme.primary,
-                  fontWeight: FontWeight.w700,
-                ),
-            recognizer: TapGestureRecognizer()
-              ..onTap = () => _goToRegisterPage(context),
-          ),
-        ],
-      ),
-    );
-  }
 }
 
-class _LoginEmail extends StatelessWidget {
-  const _LoginEmail();
+class _EmailInput extends StatelessWidget {
+  const _EmailInput();
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<LoginBloc, LoginState>(
+    return BlocBuilder<RegisterBloc, RegisterState>(
       buildWhen: (previous, current) => previous.email != current.email,
       builder: (context, state) {
         return AppTextBox(
@@ -155,11 +100,11 @@ class _LoginEmail extends StatelessWidget {
               state.status.maybeWhen(loading: () => false, orElse: () => true),
           prefixIcon: const Icon(Iconsax.user),
           error: _emailValidator(state.email),
-          onChanged: (value) => context.read<LoginBloc>()
+          onChanged: (value) => context.read<RegisterBloc>()
             ..add(
-              EmailChanged(value),
+              RegisterEmailChanged(value),
             )
-            ..add(const LoginValid()),
+            ..add(const RegisterValid()),
         );
       },
     );
@@ -181,32 +126,34 @@ class _LoginEmail extends StatelessWidget {
   }
 }
 
-class _LoginPassword extends StatelessWidget {
-  const _LoginPassword();
+class _PasswordInput extends StatelessWidget {
+  const _PasswordInput();
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<LoginBloc, LoginState>(
+    return BlocBuilder<RegisterBloc, RegisterState>(
       buildWhen: (previous, current) => previous.password != current.password,
       builder: (context, state) {
         return AppTextBox(
           labelText: 'Password',
           prefixIcon: const Icon(Iconsax.lock_1),
-          obscureText: state.isObsecure,
+          obscureText: state.isPasswordObsecure,
           enabled:
               state.status.maybeWhen(loading: () => false, orElse: () => true),
           suffixIcon: GestureDetector(
-            onTap: () => context.read<LoginBloc>().add(const TogglePassword()),
+            onTap: () => context
+                .read<RegisterBloc>()
+                .add(const RegisterTogglePassword()),
             child: Icon(
-              state.isObsecure ? Iconsax.eye_slash : Iconsax.eye,
+              state.isPasswordObsecure ? Iconsax.eye_slash : Iconsax.eye,
             ),
           ),
           error: _passwordValidator(state.password),
-          onChanged: (value) => context.read<LoginBloc>()
+          onChanged: (value) => context.read<RegisterBloc>()
             ..add(
-              PasswordChanged(value),
+              RegisterPasswordChanged(value),
             )
-            ..add(const LoginValid()),
+            ..add(const RegisterValid()),
         );
       },
     );
@@ -226,12 +173,63 @@ class _LoginPassword extends StatelessWidget {
   }
 }
 
-class _LoginButton extends StatelessWidget {
-  const _LoginButton();
+class _ConfirmPasswordInput extends StatelessWidget {
+  const _ConfirmPasswordInput();
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<LoginBloc, LoginState>(
+    return BlocBuilder<RegisterBloc, RegisterState>(
+      buildWhen: (previous, current) => previous.password != current.password,
+      builder: (context, state) {
+        return AppTextBox(
+          labelText: 'Confirm Password',
+          prefixIcon: const Icon(Iconsax.lock_1),
+          obscureText: state.isConfirmPasswordObsecure,
+          enabled:
+              state.status.maybeWhen(loading: () => false, orElse: () => true),
+          suffixIcon: GestureDetector(
+            onTap: () => context
+                .read<RegisterBloc>()
+                .add(const RegisterToggleConfirmPassword()),
+            child: Icon(
+              state.isConfirmPasswordObsecure ? Iconsax.eye_slash : Iconsax.eye,
+            ),
+          ),
+          error: _passwordValidator(state.confirmPassword, state.password),
+          onChanged: (value) => context.read<RegisterBloc>()
+            ..add(
+              RegisterConfirmPasswordChanged(value),
+            )
+            ..add(const RegisterValid()),
+        );
+      },
+    );
+  }
+
+  String? _passwordValidator(String? value, String? password) {
+    if (value == null) return null;
+
+    if (value.isEmpty) {
+      return 'Confirm Password is required';
+    }
+
+    if (value != password) {
+      return 'Password does not match';
+    }
+
+    if (value.length < 6) {
+      return 'Password must be at least 6';
+    }
+    return null;
+  }
+}
+
+class _SubmitButton extends StatelessWidget {
+  const _SubmitButton();
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<RegisterBloc, RegisterState>(
       builder: (context, state) {
         return AnimatedContainer(
           duration: const Duration(milliseconds: 300),
@@ -251,10 +249,10 @@ class _LoginButton extends StatelessWidget {
           child: state.status.maybeWhen(
             orElse: () {
               return ElevatedButton(
-                onPressed: !state.loginValid
+                onPressed: !state.registerValid
                     ? null
-                    : () => context.read<LoginBloc>().add(
-                          const LoginSubmitted(),
+                    : () => context.read<RegisterBloc>().add(
+                          const RegisterSubmitted(),
                         ),
                 style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(
@@ -262,7 +260,7 @@ class _LoginButton extends StatelessWidget {
                   ),
                 ),
                 child: Text(
-                  'SIGN IN',
+                  'SIGN UP',
                   style: Theme.of(context).textTheme.button!.copyWith(
                         color: Colors.white,
                       ),

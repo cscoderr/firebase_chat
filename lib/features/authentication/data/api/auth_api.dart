@@ -11,16 +11,23 @@ abstract class AuthApi {
     required String email,
     required String password,
   });
+
+  Stream<UserModel> get user;
+
+  Future<void> logout();
 }
 
 class AuthApiImpl implements AuthApi {
+  AuthApiImpl({FirebaseAuth? firebaseAuth})
+      : _firebaseAuth = firebaseAuth ?? FirebaseAuth.instance;
+  final FirebaseAuth _firebaseAuth;
   @override
   Future<User> login({
     required String email,
     required String password,
   }) async {
     try {
-      final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+      final credential = await _firebaseAuth.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
@@ -41,8 +48,7 @@ class AuthApiImpl implements AuthApi {
     required String password,
   }) async {
     try {
-      final credential =
-          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      final credential = await _firebaseAuth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
@@ -56,4 +62,17 @@ class AuthApiImpl implements AuthApi {
       throw AuthException.authApiException(code: 'unknown', e: e);
     }
   }
+
+  @override
+  Stream<UserModel> get user {
+    return _firebaseAuth.userChanges().map((user) {
+      if (user == null) {
+        return UserModel();
+      }
+      return UserModel.fromFirebaseUser(user);
+    });
+  }
+
+  @override
+  Future<void> logout() => _firebaseAuth.signOut();
 }

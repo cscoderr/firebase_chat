@@ -20,8 +20,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         emailChanged: (event) async => _onEmailChanged(event, emit),
         passwordChanged: (event) async => _onPasswordChanged(event, emit),
         valid: (event) async => _loginValid(event, emit),
-        toogle: (event) async => _onPasswordToggle(event, emit),
-        submitted: (event) async => _onSubmitted(event, emit),
+        toogle: (_) async => _onPasswordToggle(emit),
+        submitted: (_) async => _onSubmitted(emit),
       );
     });
   }
@@ -36,7 +36,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     emit(state.copyWith(password: event.password));
   }
 
-  void _onPasswordToggle(TogglePassword event, _Emit emit) {
+  void _onPasswordToggle(_Emit emit) {
     emit(state.copyWith(isObsecure: !state.isObsecure));
   }
 
@@ -53,7 +53,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     }
   }
 
-  Future<void> _onSubmitted(LoginSubmitted event, _Emit emit) async {
+  Future<void> _onSubmitted(_Emit emit) async {
     try {
       emit(state.copyWith(status: const AppStatus.loading()));
       await _authRepository.login(

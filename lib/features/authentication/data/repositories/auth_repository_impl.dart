@@ -31,4 +31,10 @@ class AuthRepositoryImpl extends AuthRepository {
       throw e.exception;
     }
   }
+
+  @override
+  Stream<UserModel> get user => _authApi.user;
+
+  @override
+  Future<void> logout() => _authApi.logout();
 }
