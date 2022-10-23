@@ -3,7 +3,7 @@ part of 'register_bloc.dart';
 @freezed
 class RegisterState with _$RegisterState {
   const factory RegisterState({
-    @Default(AppStatus.initial()) AppStatus status,
+    @Default(CommonStatus.initial()) CommonStatus status,
     String? email,
     String? password,
     String? confirmPassword,

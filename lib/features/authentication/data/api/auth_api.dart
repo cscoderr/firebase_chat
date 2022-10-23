@@ -67,9 +67,10 @@ class AuthApiImpl implements AuthApi {
   Stream<UserModel> get user {
     return _firebaseAuth.userChanges().map((user) {
       if (user == null) {
-        return UserModel();
+        return const UserModel();
       }
-      return UserModel.fromFirebaseUser(user);
+      final userModel = UserModel.fromFirebaseUser(user);
+      return userModel;
     });
   }
 

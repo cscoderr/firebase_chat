@@ -1,6 +1,6 @@
+import 'package:firebase_chat/app/presentation/bloc/app_bloc.dart';
 import 'package:firebase_chat/core/core.dart';
-import 'package:firebase_chat/features/authentication/authentication.dart';
-import 'package:firebase_chat/features/authentication/domain/repositories/auth_repository.dart';
+import 'package:firebase_chat/features/chat/chat.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
@@ -11,7 +11,20 @@ class ChatPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final user = context.read<AuthRepository>().user.first;
+    return BlocProvider(
+      create: (context) =>
+          ChatBloc(chatRepository: context.read<ChatRepository>()),
+      child: const ChatView(),
+    );
+  }
+}
+
+class ChatView extends StatelessWidget {
+  const ChatView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final user = context.select((AppBloc bloc) => bloc.state.user);
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -24,30 +37,30 @@ class ChatPage extends StatelessWidget {
                     onTap: () => Navigator.of(context).pop(),
                     child: const Icon(Iconsax.arrow_left_2),
                   ),
-                  const Spacer(),
-                  FutureBuilder<UserModel>(
-                    future: user,
-                    builder: (
-                      BuildContext context,
-                      AsyncSnapshot<UserModel> snapshot,
-                    ) {
-                      return Text(snapshot.data?.name ?? '');
-                    },
+                  Expanded(
+                    child: Column(
+                      children: [
+                        Text(user.email ?? ''),
+                      ],
+                    ),
                   ),
-                  const Spacer(),
                   const Icon(Iconsax.search_normal_1),
                 ],
               ),
+              const Gap(20),
               Expanded(
                 child: ListView.separated(
-                  itemCount: 1,
+                  itemCount: 10,
                   separatorBuilder: (BuildContext context, int index) =>
                       const Gap(15),
                   itemBuilder: (BuildContext context, int index) {
-                    return const Text('');
+                    return ChatBubble(
+                      isMe: index.isEven,
+                    );
                   },
                 ),
               ),
+              const Gap(20),
               Row(
                 children: [
                   IconButton(

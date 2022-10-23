@@ -78,18 +78,18 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
 
   Future<void> _onSubmitted(_Emit emit) async {
     try {
-      emit(state.copyWith(status: const AppStatus.loading()));
+      emit(state.copyWith(status: const CommonStatus.loading()));
       await _authRepository.register(
         email: state.email!,
         password: state.password!,
       );
       emit(
         state.copyWith(
-          status: const AppStatus.success(),
+          status: const CommonStatus.success(),
         ),
       );
     } on AuthException catch (e) {
-      emit(state.copyWith(status: AppStatus.error(e.message)));
+      emit(state.copyWith(status: CommonStatus.error(e.message)));
     }
   }
 }

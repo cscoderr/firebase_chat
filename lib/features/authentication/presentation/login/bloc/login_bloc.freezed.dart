@@ -757,7 +757,7 @@ abstract class LoginSubmitted implements LoginEvent {
 
 /// @nodoc
 mixin _$LoginState {
-  AppStatus get status => throw _privateConstructorUsedError;
+  CommonStatus get status => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
   String? get password => throw _privateConstructorUsedError;
   bool get isObsecure => throw _privateConstructorUsedError;
@@ -775,13 +775,13 @@ abstract class $LoginStateCopyWith<$Res> {
       _$LoginStateCopyWithImpl<$Res, LoginState>;
   @useResult
   $Res call(
-      {AppStatus status,
+      {CommonStatus status,
       String? email,
       String? password,
       bool isObsecure,
       bool loginValid});
 
-  $AppStatusCopyWith<$Res> get status;
+  $CommonStatusCopyWith<$Res> get status;
 }
 
 /// @nodoc
@@ -807,7 +807,7 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as AppStatus,
+              as CommonStatus,
       email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
@@ -829,8 +829,8 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
 
   @override
   @pragma('vm:prefer-inline')
-  $AppStatusCopyWith<$Res> get status {
-    return $AppStatusCopyWith<$Res>(_value.status, (value) {
+  $CommonStatusCopyWith<$Res> get status {
+    return $CommonStatusCopyWith<$Res>(_value.status, (value) {
       return _then(_value.copyWith(status: value) as $Val);
     });
   }
@@ -845,14 +845,14 @@ abstract class _$$_LoginStateCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {AppStatus status,
+      {CommonStatus status,
       String? email,
       String? password,
       bool isObsecure,
       bool loginValid});
 
   @override
-  $AppStatusCopyWith<$Res> get status;
+  $CommonStatusCopyWith<$Res> get status;
 }
 
 /// @nodoc
@@ -876,7 +876,7 @@ class __$$_LoginStateCopyWithImpl<$Res>
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as AppStatus,
+              as CommonStatus,
       email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
@@ -901,7 +901,7 @@ class __$$_LoginStateCopyWithImpl<$Res>
 
 class _$_LoginState implements _LoginState {
   const _$_LoginState(
-      {this.status = const AppStatus.initial(),
+      {this.status = const CommonStatus.initial(),
       this.email,
       this.password,
       this.isObsecure = true,
@@ -909,7 +909,7 @@ class _$_LoginState implements _LoginState {
 
   @override
   @JsonKey()
-  final AppStatus status;
+  final CommonStatus status;
   @override
   final String? email;
   @override
@@ -954,14 +954,14 @@ class _$_LoginState implements _LoginState {
 
 abstract class _LoginState implements LoginState {
   const factory _LoginState(
-      {final AppStatus status,
+      {final CommonStatus status,
       final String? email,
       final String? password,
       final bool isObsecure,
       final bool loginValid}) = _$_LoginState;
 
   @override
-  AppStatus get status;
+  CommonStatus get status;
   @override
   String? get email;
   @override

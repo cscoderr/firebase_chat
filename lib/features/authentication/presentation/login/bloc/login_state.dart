@@ -3,7 +3,7 @@ part of 'login_bloc.dart';
 @freezed
 class LoginState with _$LoginState {
   const factory LoginState({
-    @Default(AppStatus.initial()) AppStatus status,
+    @Default(CommonStatus.initial()) CommonStatus status,
     String? email,
     String? password,
     @Default(true) bool isObsecure,

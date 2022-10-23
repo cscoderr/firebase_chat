@@ -1,4 +1,6 @@
+import 'package:firebase_chat/app/app.dart';
 import 'package:firebase_chat/features/authentication/domain/repositories/auth_repository.dart';
+import 'package:firebase_chat/features/chat/chat.dart';
 import 'package:firebase_chat/features/welcome/view/welcome_page.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
@@ -8,20 +10,23 @@ class ChatifyApp extends StatelessWidget {
   const ChatifyApp({
     super.key,
     required this.authRepository,
+    required this.chatRepository,
   });
 
   final AuthRepository authRepository;
+  final ChatRepository chatRepository;
 
   @override
   Widget build(BuildContext context) {
     return MultiRepositoryProvider(
       providers: [
         RepositoryProvider<AuthRepository>.value(value: authRepository),
-        // RepositoryProvider(
-        //   create: (context) => SubjectRepository(),
-        // ),
+        RepositoryProvider<ChatRepository>.value(value: chatRepository),
       ],
-      child: const _App(),
+      child: BlocProvider(
+        create: (context) => AppBloc(authRepository: authRepository),
+        child: const _App(),
+      ),
     );
   }
 }

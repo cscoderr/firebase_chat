@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$AppStatus {
+mixin _$CommonStatus {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
@@ -69,15 +69,16 @@ mixin _$AppStatus {
 }
 
 /// @nodoc
-abstract class $AppStatusCopyWith<$Res> {
-  factory $AppStatusCopyWith(AppStatus value, $Res Function(AppStatus) then) =
-      _$AppStatusCopyWithImpl<$Res, AppStatus>;
+abstract class $CommonStatusCopyWith<$Res> {
+  factory $CommonStatusCopyWith(
+          CommonStatus value, $Res Function(CommonStatus) then) =
+      _$CommonStatusCopyWithImpl<$Res, CommonStatus>;
 }
 
 /// @nodoc
-class _$AppStatusCopyWithImpl<$Res, $Val extends AppStatus>
-    implements $AppStatusCopyWith<$Res> {
-  _$AppStatusCopyWithImpl(this._value, this._then);
+class _$CommonStatusCopyWithImpl<$Res, $Val extends CommonStatus>
+    implements $CommonStatusCopyWith<$Res> {
+  _$CommonStatusCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -93,7 +94,7 @@ abstract class _$$LoadingCopyWith<$Res> {
 
 /// @nodoc
 class __$$LoadingCopyWithImpl<$Res>
-    extends _$AppStatusCopyWithImpl<$Res, _$Loading>
+    extends _$CommonStatusCopyWithImpl<$Res, _$Loading>
     implements _$$LoadingCopyWith<$Res> {
   __$$LoadingCopyWithImpl(_$Loading _value, $Res Function(_$Loading) _then)
       : super(_value, _then);
@@ -106,7 +107,7 @@ class _$Loading implements Loading {
 
   @override
   String toString() {
-    return 'AppStatus.loading()';
+    return 'CommonStatus.loading()';
   }
 
   @override
@@ -193,7 +194,7 @@ class _$Loading implements Loading {
   }
 }
 
-abstract class Loading implements AppStatus {
+abstract class Loading implements CommonStatus {
   const factory Loading() = _$Loading;
 }
 
@@ -205,7 +206,7 @@ abstract class _$$SuccessCopyWith<$Res> {
 
 /// @nodoc
 class __$$SuccessCopyWithImpl<$Res>
-    extends _$AppStatusCopyWithImpl<$Res, _$Success>
+    extends _$CommonStatusCopyWithImpl<$Res, _$Success>
     implements _$$SuccessCopyWith<$Res> {
   __$$SuccessCopyWithImpl(_$Success _value, $Res Function(_$Success) _then)
       : super(_value, _then);
@@ -218,7 +219,7 @@ class _$Success implements Success {
 
   @override
   String toString() {
-    return 'AppStatus.success()';
+    return 'CommonStatus.success()';
   }
 
   @override
@@ -305,7 +306,7 @@ class _$Success implements Success {
   }
 }
 
-abstract class Success implements AppStatus {
+abstract class Success implements CommonStatus {
   const factory Success() = _$Success;
 }
 
@@ -318,7 +319,8 @@ abstract class _$$ErrorCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$ErrorCopyWithImpl<$Res> extends _$AppStatusCopyWithImpl<$Res, _$Error>
+class __$$ErrorCopyWithImpl<$Res>
+    extends _$CommonStatusCopyWithImpl<$Res, _$Error>
     implements _$$ErrorCopyWith<$Res> {
   __$$ErrorCopyWithImpl(_$Error _value, $Res Function(_$Error) _then)
       : super(_value, _then);
@@ -347,7 +349,7 @@ class _$Error implements Error {
 
   @override
   String toString() {
-    return 'AppStatus.error(error: $error)';
+    return 'CommonStatus.error(error: $error)';
   }
 
   @override
@@ -442,7 +444,7 @@ class _$Error implements Error {
   }
 }
 
-abstract class Error implements AppStatus {
+abstract class Error implements CommonStatus {
   const factory Error(final String error) = _$Error;
 
   String get error;
@@ -458,7 +460,7 @@ abstract class _$$InitialCopyWith<$Res> {
 
 /// @nodoc
 class __$$InitialCopyWithImpl<$Res>
-    extends _$AppStatusCopyWithImpl<$Res, _$Initial>
+    extends _$CommonStatusCopyWithImpl<$Res, _$Initial>
     implements _$$InitialCopyWith<$Res> {
   __$$InitialCopyWithImpl(_$Initial _value, $Res Function(_$Initial) _then)
       : super(_value, _then);
@@ -471,7 +473,7 @@ class _$Initial implements Initial {
 
   @override
   String toString() {
-    return 'AppStatus.initial()';
+    return 'CommonStatus.initial()';
   }
 
   @override
@@ -558,6 +560,426 @@ class _$Initial implements Initial {
   }
 }
 
-abstract class Initial implements AppStatus {
+abstract class Initial implements CommonStatus {
   const factory Initial() = _$Initial;
+}
+
+/// @nodoc
+mixin _$AppStatus {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(UserModel user) authenticated,
+    required TResult Function() unauthenticated,
+    required TResult Function() initial,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(UserModel user)? authenticated,
+    TResult? Function()? unauthenticated,
+    TResult? Function()? initial,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(UserModel user)? authenticated,
+    TResult Function()? unauthenticated,
+    TResult Function()? initial,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Authenticated value) authenticated,
+    required TResult Function(Unauthenticated value) unauthenticated,
+    required TResult Function(AppInitial value) initial,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(Authenticated value)? authenticated,
+    TResult? Function(Unauthenticated value)? unauthenticated,
+    TResult? Function(AppInitial value)? initial,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Authenticated value)? authenticated,
+    TResult Function(Unauthenticated value)? unauthenticated,
+    TResult Function(AppInitial value)? initial,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $AppStatusCopyWith<$Res> {
+  factory $AppStatusCopyWith(AppStatus value, $Res Function(AppStatus) then) =
+      _$AppStatusCopyWithImpl<$Res, AppStatus>;
+}
+
+/// @nodoc
+class _$AppStatusCopyWithImpl<$Res, $Val extends AppStatus>
+    implements $AppStatusCopyWith<$Res> {
+  _$AppStatusCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$AuthenticatedCopyWith<$Res> {
+  factory _$$AuthenticatedCopyWith(
+          _$Authenticated value, $Res Function(_$Authenticated) then) =
+      __$$AuthenticatedCopyWithImpl<$Res>;
+  @useResult
+  $Res call({UserModel user});
+}
+
+/// @nodoc
+class __$$AuthenticatedCopyWithImpl<$Res>
+    extends _$AppStatusCopyWithImpl<$Res, _$Authenticated>
+    implements _$$AuthenticatedCopyWith<$Res> {
+  __$$AuthenticatedCopyWithImpl(
+      _$Authenticated _value, $Res Function(_$Authenticated) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? user = null,
+  }) {
+    return _then(_$Authenticated(
+      null == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as UserModel,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$Authenticated implements Authenticated {
+  const _$Authenticated(this.user);
+
+  @override
+  final UserModel user;
+
+  @override
+  String toString() {
+    return 'AppStatus.authenticated(user: $user)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$Authenticated &&
+            (identical(other.user, user) || other.user == user));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, user);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AuthenticatedCopyWith<_$Authenticated> get copyWith =>
+      __$$AuthenticatedCopyWithImpl<_$Authenticated>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(UserModel user) authenticated,
+    required TResult Function() unauthenticated,
+    required TResult Function() initial,
+  }) {
+    return authenticated(user);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(UserModel user)? authenticated,
+    TResult? Function()? unauthenticated,
+    TResult? Function()? initial,
+  }) {
+    return authenticated?.call(user);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(UserModel user)? authenticated,
+    TResult Function()? unauthenticated,
+    TResult Function()? initial,
+    required TResult orElse(),
+  }) {
+    if (authenticated != null) {
+      return authenticated(user);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Authenticated value) authenticated,
+    required TResult Function(Unauthenticated value) unauthenticated,
+    required TResult Function(AppInitial value) initial,
+  }) {
+    return authenticated(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(Authenticated value)? authenticated,
+    TResult? Function(Unauthenticated value)? unauthenticated,
+    TResult? Function(AppInitial value)? initial,
+  }) {
+    return authenticated?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Authenticated value)? authenticated,
+    TResult Function(Unauthenticated value)? unauthenticated,
+    TResult Function(AppInitial value)? initial,
+    required TResult orElse(),
+  }) {
+    if (authenticated != null) {
+      return authenticated(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class Authenticated implements AppStatus {
+  const factory Authenticated(final UserModel user) = _$Authenticated;
+
+  UserModel get user;
+  @JsonKey(ignore: true)
+  _$$AuthenticatedCopyWith<_$Authenticated> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$UnauthenticatedCopyWith<$Res> {
+  factory _$$UnauthenticatedCopyWith(
+          _$Unauthenticated value, $Res Function(_$Unauthenticated) then) =
+      __$$UnauthenticatedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$UnauthenticatedCopyWithImpl<$Res>
+    extends _$AppStatusCopyWithImpl<$Res, _$Unauthenticated>
+    implements _$$UnauthenticatedCopyWith<$Res> {
+  __$$UnauthenticatedCopyWithImpl(
+      _$Unauthenticated _value, $Res Function(_$Unauthenticated) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$Unauthenticated implements Unauthenticated {
+  const _$Unauthenticated();
+
+  @override
+  String toString() {
+    return 'AppStatus.unauthenticated()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$Unauthenticated);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(UserModel user) authenticated,
+    required TResult Function() unauthenticated,
+    required TResult Function() initial,
+  }) {
+    return unauthenticated();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(UserModel user)? authenticated,
+    TResult? Function()? unauthenticated,
+    TResult? Function()? initial,
+  }) {
+    return unauthenticated?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(UserModel user)? authenticated,
+    TResult Function()? unauthenticated,
+    TResult Function()? initial,
+    required TResult orElse(),
+  }) {
+    if (unauthenticated != null) {
+      return unauthenticated();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Authenticated value) authenticated,
+    required TResult Function(Unauthenticated value) unauthenticated,
+    required TResult Function(AppInitial value) initial,
+  }) {
+    return unauthenticated(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(Authenticated value)? authenticated,
+    TResult? Function(Unauthenticated value)? unauthenticated,
+    TResult? Function(AppInitial value)? initial,
+  }) {
+    return unauthenticated?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Authenticated value)? authenticated,
+    TResult Function(Unauthenticated value)? unauthenticated,
+    TResult Function(AppInitial value)? initial,
+    required TResult orElse(),
+  }) {
+    if (unauthenticated != null) {
+      return unauthenticated(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class Unauthenticated implements AppStatus {
+  const factory Unauthenticated() = _$Unauthenticated;
+}
+
+/// @nodoc
+abstract class _$$AppInitialCopyWith<$Res> {
+  factory _$$AppInitialCopyWith(
+          _$AppInitial value, $Res Function(_$AppInitial) then) =
+      __$$AppInitialCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$AppInitialCopyWithImpl<$Res>
+    extends _$AppStatusCopyWithImpl<$Res, _$AppInitial>
+    implements _$$AppInitialCopyWith<$Res> {
+  __$$AppInitialCopyWithImpl(
+      _$AppInitial _value, $Res Function(_$AppInitial) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$AppInitial implements AppInitial {
+  const _$AppInitial();
+
+  @override
+  String toString() {
+    return 'AppStatus.initial()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$AppInitial);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(UserModel user) authenticated,
+    required TResult Function() unauthenticated,
+    required TResult Function() initial,
+  }) {
+    return initial();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(UserModel user)? authenticated,
+    TResult? Function()? unauthenticated,
+    TResult? Function()? initial,
+  }) {
+    return initial?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(UserModel user)? authenticated,
+    TResult Function()? unauthenticated,
+    TResult Function()? initial,
+    required TResult orElse(),
+  }) {
+    if (initial != null) {
+      return initial();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Authenticated value) authenticated,
+    required TResult Function(Unauthenticated value) unauthenticated,
+    required TResult Function(AppInitial value) initial,
+  }) {
+    return initial(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(Authenticated value)? authenticated,
+    TResult? Function(Unauthenticated value)? unauthenticated,
+    TResult? Function(AppInitial value)? initial,
+  }) {
+    return initial?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Authenticated value)? authenticated,
+    TResult Function(Unauthenticated value)? unauthenticated,
+    TResult Function(AppInitial value)? initial,
+    required TResult orElse(),
+  }) {
+    if (initial != null) {
+      return initial(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AppInitial implements AppStatus {
+  const factory AppInitial() = _$AppInitial;
 }

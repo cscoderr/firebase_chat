@@ -1186,7 +1186,7 @@ abstract class RegisterToggleConfirmPassword implements RegisterEvent {
 
 /// @nodoc
 mixin _$RegisterState {
-  AppStatus get status => throw _privateConstructorUsedError;
+  CommonStatus get status => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
   String? get password => throw _privateConstructorUsedError;
   String? get confirmPassword => throw _privateConstructorUsedError;
@@ -1206,7 +1206,7 @@ abstract class $RegisterStateCopyWith<$Res> {
       _$RegisterStateCopyWithImpl<$Res, RegisterState>;
   @useResult
   $Res call(
-      {AppStatus status,
+      {CommonStatus status,
       String? email,
       String? password,
       String? confirmPassword,
@@ -1214,7 +1214,7 @@ abstract class $RegisterStateCopyWith<$Res> {
       bool isConfirmPasswordObsecure,
       bool registerValid});
 
-  $AppStatusCopyWith<$Res> get status;
+  $CommonStatusCopyWith<$Res> get status;
 }
 
 /// @nodoc
@@ -1242,7 +1242,7 @@ class _$RegisterStateCopyWithImpl<$Res, $Val extends RegisterState>
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as AppStatus,
+              as CommonStatus,
       email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
@@ -1272,8 +1272,8 @@ class _$RegisterStateCopyWithImpl<$Res, $Val extends RegisterState>
 
   @override
   @pragma('vm:prefer-inline')
-  $AppStatusCopyWith<$Res> get status {
-    return $AppStatusCopyWith<$Res>(_value.status, (value) {
+  $CommonStatusCopyWith<$Res> get status {
+    return $CommonStatusCopyWith<$Res>(_value.status, (value) {
       return _then(_value.copyWith(status: value) as $Val);
     });
   }
@@ -1288,7 +1288,7 @@ abstract class _$$_RegisterStateCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {AppStatus status,
+      {CommonStatus status,
       String? email,
       String? password,
       String? confirmPassword,
@@ -1297,7 +1297,7 @@ abstract class _$$_RegisterStateCopyWith<$Res>
       bool registerValid});
 
   @override
-  $AppStatusCopyWith<$Res> get status;
+  $CommonStatusCopyWith<$Res> get status;
 }
 
 /// @nodoc
@@ -1323,7 +1323,7 @@ class __$$_RegisterStateCopyWithImpl<$Res>
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as AppStatus,
+              as CommonStatus,
       email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
@@ -1356,7 +1356,7 @@ class __$$_RegisterStateCopyWithImpl<$Res>
 
 class _$_RegisterState implements _RegisterState {
   const _$_RegisterState(
-      {this.status = const AppStatus.initial(),
+      {this.status = const CommonStatus.initial(),
       this.email,
       this.password,
       this.confirmPassword,
@@ -1366,7 +1366,7 @@ class _$_RegisterState implements _RegisterState {
 
   @override
   @JsonKey()
-  final AppStatus status;
+  final CommonStatus status;
   @override
   final String? email;
   @override
@@ -1428,7 +1428,7 @@ class _$_RegisterState implements _RegisterState {
 
 abstract class _RegisterState implements RegisterState {
   const factory _RegisterState(
-      {final AppStatus status,
+      {final CommonStatus status,
       final String? email,
       final String? password,
       final String? confirmPassword,
@@ -1437,7 +1437,7 @@ abstract class _RegisterState implements RegisterState {
       final bool registerValid}) = _$_RegisterState;
 
   @override
-  AppStatus get status;
+  CommonStatus get status;
   @override
   String? get email;
   @override
