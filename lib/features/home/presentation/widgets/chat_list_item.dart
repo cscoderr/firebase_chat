@@ -1,3 +1,4 @@
+import 'package:firebase_chat/features/authentication/authentication.dart';
 import 'package:firebase_chat/features/chat/chat.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -5,10 +6,12 @@ import 'package:gap/gap.dart';
 class ChatListItem extends StatelessWidget {
   const ChatListItem({
     super.key,
+    required this.user,
     this.isActive = false,
   });
 
   final bool isActive;
+  final UserModel user;
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +47,7 @@ class ChatListItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Tomiwa Idowu',
+                    user.name ?? '',
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
                   Text(

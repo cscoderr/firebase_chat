@@ -12,7 +12,7 @@ class ChatRepositoryImpl implements ChatRepository {
   @override
   Stream<List<Message>> getMessages() {
     final docRef = _firebaseFirestore
-        .collection('inbox/B7fzYUoDmG4WsdJFR4B2/messages')
+        .collection('users')
         .orderBy('createdAt', descending: true);
     return docRef.snapshots().map((event) {
       final data = event.docs.map((e) => Message.fromJson(e.data())).toList();
@@ -51,15 +51,15 @@ class ChatRepositoryImpl implements ChatRepository {
   @override
   Stream<List<UserModel>> inboxes(String userId) {
     print(FirebaseAuth.instance.currentUser!.uid);
-    final docRef = _firebaseFirestore
-        .collection('inbox')
-        .where('receiverId', isEqualTo: FirebaseAuth.instance.currentUser!.uid)
-        .where('senderId', isEqualTo: FirebaseAuth.instance.currentUser!.uid)
-        .orderBy('createdAt', descending: true);
+    final docRef = _firebaseFirestore.collection('users');
+    // .where('receiverId', isEqualTo: FirebaseAuth.instance.currentUser!.uid)
+    // .where('senderId', isEqualTo: FirebaseAuth.instance.currentUser!.uid)
+    // .orderBy('createdAt', descending: true);
     return docRef.snapshots().map((event) {
-      print(event.docs.first.data());
+      // print(event.docs.first.data());
       final data = event.docs.map((e) => UserModel.fromJson(e.data())).toList();
-      return [];
+      print(data);
+      return data;
     });
   }
 }

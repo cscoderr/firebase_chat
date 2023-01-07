@@ -15,10 +15,10 @@ class UserModel with EquatableMixin {
   });
 
   factory UserModel.fromFirebaseUser(User user) {
-    print(user.uid);
     return UserModel(
       id: user.uid,
       name: user.displayName,
+      // username: user.username
       email: user.email,
       photoUrl: user.photoURL,
       phoneNumber: user.phoneNumber,
@@ -30,6 +30,7 @@ class UserModel with EquatableMixin {
 
   final String? id;
   final String? name;
+  // final String? username;
   final String? email;
   final String? photoUrl;
   final String? phoneNumber;

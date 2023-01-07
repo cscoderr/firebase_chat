@@ -16,7 +16,7 @@ class HomePage extends StatelessWidget {
     return BlocProvider(
       create: (context) => HomeCubit(
         chatRepository: context.read<ChatRepository>(),
-      )..getMessages(userId ?? ''),
+      )..getInboxes(userId ?? ''),
       child: const HomeView(),
     );
   }
@@ -53,7 +53,13 @@ class HomeView extends StatelessWidget {
                 labelText: 'Search',
               ),
             ),
-            const ChatList(),
+            BlocBuilder<HomeCubit, HomeState>(
+              builder: (context, state) {
+                return ChatList(
+                  chats: state.users,
+                );
+              },
+            ),
           ],
         ),
       ),
