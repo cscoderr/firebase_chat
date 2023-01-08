@@ -16,27 +16,27 @@ class ChatListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => _goToChatPage(context),
+      onTap: () => _goToChatPage(context, user),
       child: Container(
         padding: const EdgeInsets.symmetric(
           horizontal: 20,
           vertical: 10,
         ),
-        decoration: BoxDecoration(
-          color: isActive ? Colors.grey : Colors.white,
+        decoration: const BoxDecoration(
+          color: Colors.white,
         ),
         child: Row(
           children: [
-            if (isActive)
-              Container(
-                width: 3,
-                height: 35,
-                decoration: BoxDecoration(
-                  color: Theme.of(context).primaryColor,
-                  borderRadius: BorderRadius.circular(2),
-                ),
-              ),
-            const Gap(10),
+            // if (isActive)
+            //   Container(
+            //     width: 3,
+            //     height: 35,
+            //     decoration: BoxDecoration(
+            //       color: Theme.of(context).primaryColor,
+            //       borderRadius: BorderRadius.circular(2),
+            //     ),
+            //   ),
+            // const Gap(10),
             const CircleAvatar(
               radius: 30,
               child: Text('A'),
@@ -76,11 +76,12 @@ class ChatListItem extends StatelessWidget {
     );
   }
 
-  void _goToChatPage(BuildContext context) {
+  void _goToChatPage(BuildContext context, UserModel user) {
     Navigator.of(context).push(
-      PageRouteBuilder(
-        pageBuilder: (context, animation, secondaryAnimation) =>
-            const ChatPage(),
+      PageRouteBuilder<void>(
+        pageBuilder: (context, animation, secondaryAnimation) => ChatPage(
+          user: user,
+        ),
         transitionsBuilder: (context, animation, secondaryAnimation, child) {
           return SlideTransition(
             position: Tween<Offset>(

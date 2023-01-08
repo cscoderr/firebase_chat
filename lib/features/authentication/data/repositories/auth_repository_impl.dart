@@ -43,6 +43,7 @@ class AuthRepositoryImpl extends AuthRepository {
         'fullName': fullName,
         'email': email,
         'username': username,
+        'uid': userCredential.user!.uid,
       });
     } on FirebaseAuthException catch (e) {
       throw (AuthException.mapException(code: e.code) as MapException)

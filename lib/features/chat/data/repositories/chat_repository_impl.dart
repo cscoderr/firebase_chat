@@ -4,24 +4,47 @@ import 'package:firebase_chat/features/authentication/data/models/user_model.dar
 import 'package:firebase_chat/features/chat/chat.dart';
 import 'package:uuid/uuid.dart';
 
+class ChatException implements Exception {
+  ChatException(this.message);
+  final String message;
+  @override
+  String toString() {
+    return message;
+  }
+}
+
 class ChatRepositoryImpl implements ChatRepository {
   ChatRepositoryImpl({FirebaseFirestore? firebaseFirestore})
       : _firebaseFirestore = firebaseFirestore ?? FirebaseFirestore.instance;
 
   final FirebaseFirestore _firebaseFirestore;
   @override
-  Stream<List<Message>> getMessages() {
+  Stream<List<Message>> getMessages({
+    required String senderId,
+    required String receiverId,
+  }) {
     final docRef = _firebaseFirestore
-        .collection('users')
+        .collection('inbox')
+        .doc(joinId(receiverId))
+        .collection('messages')
         .orderBy('createdAt', descending: true);
+
     return docRef.snapshots().map((event) {
       final data = event.docs.map((e) => Message.fromJson(e.data())).toList();
       return data;
     });
   }
 
+  String joinId(String receiverId) {
+    final userId = FirebaseAuth.instance.currentUser!.uid;
+    final id = userId.compareTo(receiverId) > 0
+        ? '$userId$receiverId'
+        : '$receiverId$userId';
+    return id;
+  }
+
   @override
-  Future<void> sendMessage({
+  Future<String> sendMessage({
     required String message,
     required String receiverId,
     required UserModel user,
@@ -29,7 +52,7 @@ class ChatRepositoryImpl implements ChatRepository {
     final data = {
       'id': const Uuid().v4(),
       'senderId': user.id,
-      'receiverId': const Uuid().v4(),
+      'receiverId': receiverId,
       'message': message,
       'createdAt': FieldValue.serverTimestamp(),
       'updatedAt': FieldValue.serverTimestamp(),
@@ -39,22 +62,26 @@ class ChatRepositoryImpl implements ChatRepository {
     //   'receiverId': 'QqNK40RZ6jZXUTKh5A0ko2Ot6sd2',
     //   'createdAt': FieldValue.serverTimestamp(),
     // });
+
     await _firebaseFirestore
-        .collection('inbox/B7fzYUoDmG4WsdJFR4B2/messages')
+        .collection('inbox')
+        .doc(joinId(receiverId))
+        .collection('messages')
         .doc()
         .set(
           data,
         )
-        .onError((e, _) => print('Error writing document: $e'));
+        .onError(
+          (e, _) => throw ChatException(e.toString()),
+        );
+    return 'Message sent';
   }
 
   @override
-  Stream<List<UserModel>> inboxes(String userId) {
-    print(FirebaseAuth.instance.currentUser!.uid);
-    final docRef = _firebaseFirestore.collection('users');
-    // .where('receiverId', isEqualTo: FirebaseAuth.instance.currentUser!.uid)
-    // .where('senderId', isEqualTo: FirebaseAuth.instance.currentUser!.uid)
-    // .orderBy('createdAt', descending: true);
+  Stream<List<UserModel>> inboxes() {
+    final docRef = _firebaseFirestore
+        .collection('users')
+        .where('uid', isNotEqualTo: FirebaseAuth.instance.currentUser!.uid);
     return docRef.snapshots().map((event) {
       // print(event.docs.first.data());
       final data = event.docs.map((e) => UserModel.fromJson(e.data())).toList();

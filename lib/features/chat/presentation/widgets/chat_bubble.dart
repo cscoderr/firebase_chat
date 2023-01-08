@@ -5,11 +5,15 @@ class ChatBubble extends StatelessWidget {
   const ChatBubble({
     super.key,
     required this.message,
+    required this.initial,
+    required this.otherInitial,
     this.isMe = false,
   });
 
   final bool isMe;
   final String message;
+  final String initial;
+  final String otherInitial;
 
   @override
   Widget build(BuildContext context) {
@@ -17,9 +21,9 @@ class ChatBubble extends StatelessWidget {
       mainAxisAlignment: isMe ? MainAxisAlignment.end : MainAxisAlignment.start,
       children: [
         if (!isMe)
-          const CircleAvatar(
+          CircleAvatar(
             radius: 20,
-            child: Text('A'),
+            child: Text(otherInitial),
           ),
         const Gap(10),
         Flexible(
@@ -47,9 +51,9 @@ class ChatBubble extends StatelessWidget {
         ),
         const Gap(10),
         if (isMe)
-          const CircleAvatar(
+          CircleAvatar(
             radius: 20,
-            child: Text('A'),
+            child: Text(initial),
           ),
       ],
     );

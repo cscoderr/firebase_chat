@@ -17,13 +17,13 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
       : _chatRepository = chatRepository,
         super(const ChatState()) {
     on<ChatEvent>((event, emit) async {
-      event.map(
+      await event.map(
         sendMessage: (event) async => _onSendMessage(event, emit),
-        messageChanged: (event) => _onMessageChanged(event, emit),
-        messagesChanged: (event) => _onMessagesChanged(event, emit),
-        getMessages: (event) => _getMessages(event, emit),
-        userChanged: (event) => _onUserChanged(event, emit),
-        receiverIdChanged: (event) => _onReceiverIdChanged(event, emit),
+        messageChanged: (event) async => _onMessageChanged(event, emit),
+        messagesChanged: (event) async => _onMessagesChanged(event, emit),
+        getMessages: (event) async => _getMessages(event, emit),
+        userChanged: (event) async => _onUserChanged(event, emit),
+        receiverIdChanged: (event) async => _onReceiverIdChanged(event, emit),
       );
     });
   }
@@ -31,9 +31,14 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
   final ChatRepository _chatRepository;
   late final StreamSubscription<List<Message>> _messagesSubscription;
 
-  void _getMessages(GetMessages event, _Emit emit) {
+  Future<void> _getMessages(GetMessages event, _Emit emit) async {
     emit(state.copyWith(status: const CommonStatus.loading()));
-    _messagesSubscription = _chatRepository.getMessages().listen((messages) {
+    _messagesSubscription = _chatRepository
+        .getMessages(
+      senderId: state.user.id ?? '',
+      receiverId: state.receiverId,
+    )
+        .listen((messages) {
       if (messages.isNotEmpty) {
         add(ChatEvent.messagesChanged(messages));
       } else {
@@ -64,11 +69,16 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
   }
 
   Future<void> _onSendMessage(SendMessage event, _Emit emit) async {
-    await _chatRepository.sendMessage(
-      message: state.message,
-      receiverId: state.receiverId,
-      user: state.user,
-    );
+    try {
+      await _chatRepository.sendMessage(
+        message: state.message,
+        receiverId: state.receiverId,
+        user: state.user,
+      );
+      emit(state.copyWith(status: const CommonStatus.success()));
+    } on ChatException catch (e) {
+      emit(state.copyWith(status: CommonStatus.error(e.message)));
+    }
   }
 
   @override

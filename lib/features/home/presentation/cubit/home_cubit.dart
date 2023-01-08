@@ -13,15 +13,11 @@ class HomeCubit extends Cubit<HomeState> {
       : _chatRepository = chatRepository,
         super(const HomeState());
 
-  StreamSubscription? _inboxSubscription;
+  StreamSubscription<List<UserModel>>? _inboxSubscription;
   final ChatRepository _chatRepository;
 
-  void getMessages(String userId) {
-    _chatRepository.inboxes(userId);
-  }
-
   Future<void> getInboxes(String userId) async {
-    _inboxSubscription = _chatRepository.inboxes(userId).listen((event) {
+    _inboxSubscription = _chatRepository.inboxes().listen((event) {
       emit(state.copyWith(users: event));
     });
   }
